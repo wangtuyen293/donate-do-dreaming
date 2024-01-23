@@ -1,0 +1,109 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #e6f3ff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 5px 10px; /* Cập nhật giá trị padding để giữ chiều cao là 10px */
+}
+
+.logo {
+    flex-grow: 1;
+    text-align: center;
+}
+
+.logo img {
+    max-width: 100px;
+    height: auto;
+}
+
+.nav-links {
+    display: flex;
+    gap: 20px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #000;
+    transition: color 0.3s;
+    font-size: 18px;
+    text-transform: uppercase;
+}
+
+.nav-links a:hover {
+    color: #000;
+    font-weight: bold;
+}
+
+.search-login {
+    display: flex;
+    gap: 20px;
+}
+
+.search-login input[type="text"] {
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+.search-login button {
+    padding: 5px 10px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+
+}
+#progress-container {
+    width: 50%;
+    margin: 20px auto;
+}
+
+#my-progress {
+    width: 100%;
+    height: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f5f5f5;
+}
+
+#my-progress::-webkit-progress-value {
+    background-color: #3498db;
+}
+footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+}
+
+.footer-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.footer-logo {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.footer-text {
+    margin-top: 10px;
+}
+
+.footer-links {
+    margin-top: 20px;
+}
+
+.footer-links a {
+    color: #fff;
+    text-decoration: none;
+    margin: 0 10px;
+}

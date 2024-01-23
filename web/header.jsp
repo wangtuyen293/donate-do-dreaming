@@ -122,15 +122,16 @@
                         <div class="menu-wrapper">
 
                             <div class="logo">
-                                <a href="index.html"><img src="assets/img/logo/dendi2.png" alt></a>
+                                <a href="home.jsp"><img src="assets/img/logo/dendi2.png" alt></a>
                             </div>
-
                             <div class="main-menu d-none d-lg-block">
                                 <nav>
+                                    
                                     <ul id="navigation">
                                         <li><a href="home.jsp">Trang chủ</a></li>
-                                        <li><a href="shop.html">Toàn bộ các dự án</a></li>
-                                        <li><a href="contact.html">Contact</a></li>
+                                        <li><a href="buildproject.jsp">Start a project</a></li>
+                                        <li><a href="allproject.jsp">Toàn bộ các dự án</a></li>
+                                        <li><a href="contact.jsp">Contact</a></li>
                                     </ul>
                                 </nav>
                             </div>

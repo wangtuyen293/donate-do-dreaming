@@ -10,7 +10,7 @@ package Model;
  */
 import java.sql.Date;
 
-public class User extends UserType {
+public class User{
 
     private int userId;
     private String fullName;
@@ -21,8 +21,9 @@ public class User extends UserType {
     private byte[] avatar;
     private String email;
     private String phoneNumber;
+    private String userTypeName;
 
-    public User(String fullName, String userName, String password, int gender, Date dateOfBirth, byte[] avatar, String email, String phoneNumber) {
+    public User(String fullName, String userName, String password, int gender, Date dateOfBirth, byte[] avatar, String email, String phoneNumber,String userTypeName) {
         this.fullName = fullName;
         this.userName = userName;
         this.password = password;
@@ -31,6 +32,7 @@ public class User extends UserType {
         this.avatar = avatar;
         this.email = email;
         this.phoneNumber = phoneNumber;
+        this.userTypeName = this.userTypeName;
     }
 
     public int getUserId() {
@@ -104,4 +106,13 @@ public class User extends UserType {
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
+
+    public String getUserTypeName() {
+        return userTypeName;
+    }
+
+    public void setUserTypeName(String userTypeName) {
+        this.userTypeName = userTypeName;
+    }
+    
 }

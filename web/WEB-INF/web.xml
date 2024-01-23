@@ -12,6 +12,10 @@
         <servlet-name>SignUpServlet</servlet-name>
         <servlet-class>Controller.SignUpServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>LoginServlet</servlet-name>
+        <servlet-class>Controller.LoginServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginGoogleServlet</servlet-name>
         <url-pattern>/login-google</url-pattern>
@@ -23,6 +27,14 @@
     <servlet-mapping>
         <servlet-name>SignUpServlet</servlet-name>
         <url-pattern>/signup</url-pattern>
+    </servlet-mapping>
+    <context-param>
+        <param-name>upload-dir</param-name>
+        <param-value>/path/to/your/upload/directory</param-value>
+    </context-param>
+    <servlet-mapping>
+        <servlet-name>LoginServlet</servlet-name>
+        <url-pattern>/login</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -6,24 +6,20 @@ package Controller;
 
 import Model.DAO;
 import Model.User;
-import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.PrintWriter;
-import java.sql.Date;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.MultipartConfig;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.Part;
+import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author quang
  */
-@MultipartConfig(maxFileSize = 16177215)
-public class SignUpServlet extends HttpServlet {
+public class LoginServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -42,10 +38,10 @@ public class SignUpServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet SignUpServlet</title>");
+            out.println("<title>Servlet LoginServlet</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet SignUpServlet at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet LoginServlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -77,32 +73,32 @@ public class SignUpServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String fullName = request.getParameter("fullName");
-        String userName = request.getParameter("userName");
-        String password = request.getParameter("password");
-        int gender = Integer.parseInt(request.getParameter("gender"));
-        Date dateOfBirth = Date.valueOf(request.getParameter("dateOfBirth"));
-        String email = request.getParameter("email");
-        String phoneNumber = request.getParameter("phoneNumber");
-        Part filePart = request.getPart("avatar");
-        byte[] avatar = readAvatarFromPart(filePart);
-        User newUser = new User(fullName, userName, password, gender, dateOfBirth, avatar, email, phoneNumber,"User");
+        response.setContentType("text/html;charset=UTF-8");
         DAO dao = new DAO();
-        dao.addUser(newUser);
-        getServletContext().getRequestDispatcher("/result.jsp").forward(request, response);
-    }
+        HttpSession session = request.getSession();
+        Cookie[] cookies = request.getCookies();
+        String username = request.getParameter("username");
+        String pwd = request.getParameter("password");
+        User user = dao.getUser(username, pwd);
 
-    private byte[] readAvatarFromPart(Part filePart) throws IOException {
-        InputStream inputStream = filePart.getInputStream();
-        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-        byte[] buffer = new byte[4096];
-        int bytesRead = -1;
+        String remember = request.getParameter("remember");
 
-        while ((bytesRead = inputStream.read(buffer)) != -1) {
-            byteArrayOutputStream.write(buffer, 0, bytesRead);
+        if (user == null) {
+            request.setAttribute("ShipperLoginFailed", "User Name or Pass Word is Invalid.");
+            request.getRequestDispatcher("signup.jsp").forward(request, response);
+        } else {
+            if (remember != null) {
+                Cookie cookieU = new Cookie("user", username);
+                cookieU.setMaxAge(7 * 24 * 60 * 60);
+                response.addCookie(cookieU);
+
+                Cookie cookieP = new Cookie("pass", pwd);
+                cookieP.setMaxAge(7 * 24 * 60 * 60);
+                response.addCookie(cookieP);
+            }
+            session.setAttribute("user", user);
+            request.getRequestDispatcher("home.jsp").forward(request, response);
         }
-
-        return byteArrayOutputStream.toByteArray();
     }
 
     /**

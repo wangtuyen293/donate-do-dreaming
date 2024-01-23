@@ -41,7 +41,7 @@
         </div>
         <div class="form-group">
             <label for="avatar">Avatar:</label>
-            <input type="file" class="form-control" id="avatar" name="avatar" required>
+            <input type="file" class="form-control" id="avatar" name="avatar" >
         </div>
 
         <div class="form-group">

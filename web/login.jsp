@@ -7,18 +7,18 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <jsp:include page="header.jsp" />
 <section style="border: 2px solid #333; background-color: #f4f4f4; border-radius: 10px; text-align: center; padding: 0;">
-    <form class="custom-form" style="display: inline-block; text-align: left; margin: 10px; padding: 20px;">
+    <form action="login" method="post" class="custom-form" style="display: inline-block; text-align: left; margin: 10px; padding: 20px;">
         <div class="mb-3">
-            <label for="exampleInputEmail1" class="form-label">Username</label>
-            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+            <label for="username" class="form-label">Username</label>
+            <input type="text" class="form-control" id="username">
         </div>
         <div class="mb-3">
-            <label for="exampleInputPassword1" class="form-label">Password</label>
-            <input type="password" class="form-control" id="exampleInputPassword1">
+            <label for="password" class="form-label">Password</label>
+            <input type="password" class="form-control" id="password">
         </div>
         <div class="mb-3 form-check">
-            <input type="checkbox" class="form-check-input" id="exampleCheck1">
-            <label class="form-check-label" for="exampleCheck1">Remember me</label>
+            <input type="checkbox" class="form-check-input" id="remember">
+            <label class="form-check-label" for="remember">Remember me</label>
         </div>
         <button type="submit" class="btn btn-primary">Login</button>
         <a href="signup.jsp" style="color: red; margin-left: 5px; border: 1px solid red; padding: 5px; text-decoration: none;">Sign up</a>

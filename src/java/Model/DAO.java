@@ -5,8 +5,11 @@
 package Model;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -16,33 +19,52 @@ import java.util.logging.Logger;
  */
 public class DAO {
 
-    private Connection conn;
-
-    public DAO() {
-    }
-
-    public DAO(Connection conn) {
-        this.conn = conn;
-    }
-
     public void addUser(User user) {
-            String query = "INSERT INTO Users (FullName, UserName, Password, Gender, DateOfBirth, Avatar, Email, PhoneNumber, UserTypeId) "
+        try {
+            String query = "INSERT INTO Users (fullName, userName, password, gender, dateOfBirth, avatar, email, phoneNumber,userTypeName) "
                     + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
-
-            try ( PreparedStatement preparedStatement = conn.prepareStatement(query)) {
-                preparedStatement.setString(1, user.getFullName());
-                preparedStatement.setString(2, user.getUserName());
-                preparedStatement.setString(3, user.getPassword());
-                preparedStatement.setInt(4, user.getGender());
-                preparedStatement.setDate(5, user.getDateOfBirth());
-                preparedStatement.setBytes(6, user.getAvatar()); // Lưu dữ liệu tệp tin ảnh vào cơ sở dữ liệu
-                preparedStatement.setString(7, user.getEmail());
-                preparedStatement.setString(8, user.getPhoneNumber());
-                preparedStatement.setInt(9, user.getUserTypeId());
-
-                preparedStatement.executeUpdate();
-            } catch (SQLException ex) {
-            Logger.getLogger(DAO.class.getName()).log(Level.SEVERE, null, ex);
+            Connection connection = new DBContext().getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, user.getFullName());
+            preparedStatement.setString(2, user.getUserName());
+            preparedStatement.setString(3, user.getPassword());
+            preparedStatement.setInt(4, user.getGender());
+            preparedStatement.setDate(5, user.getDateOfBirth());
+            preparedStatement.setBytes(6, user.getAvatar());
+            preparedStatement.setString(7, user.getEmail());
+            preparedStatement.setString(8, user.getPhoneNumber());
+            preparedStatement.setString(9, "User");
+            preparedStatement.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
+
+    }
+
+    public User getUser(String username, String pass) {
+
+        try {
+            String query = "select * from User where userName=? and password=?";
+            Connection connection = new DBContext().getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, username);
+            preparedStatement.setString(2, pass);
+            ResultSet res = preparedStatement.executeQuery();
+            while (res.next()) {
+                byte[] avatarBytes = res.getBytes(6);
+                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+                Date dateOfBirth = (Date) dateFormat.parse(res.getString(5));
+                return new User(res.getString(1), res.getString(2), res.getString(3),
+                        res.getInt(4), dateOfBirth, avatarBytes,
+                        res.getString(7), res.getString(8), res.getString(9));
+            }
+            res.close();
+            preparedStatement.close();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+
+        return null;
+
     }
 }

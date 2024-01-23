@@ -16,17 +16,15 @@ import java.util.logging.Logger;
  */
 public class DBContext {
 
-    protected Connection connection;
-
-    public DBContext() {
-        try {
-            String user = "sa";
-            String pass = "123456";
-            String url = "jdbc:sqlserver://localhost:1433;databaseName=DonateDoDreaming";
-            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-            connection = DriverManager.getConnection(url, user, pass);
-        } catch (ClassNotFoundException | SQLException ex) {
-            Logger.getLogger(DBContext.class.getName()).log(Level.SEVERE, null, ex);
-        }
+    public Connection getConnection() throws Exception {
+        String url = "jdbc:sqlserver://" + serverName + ":" + portNumber + ";databaseName=" + dbName;
+        Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+        return DriverManager.getConnection(url, userId, passWord);
     }
+    private final String serverName = "DESKTOP-ARH9RDE\\DE170074";
+    private final String dbName = "DonateDoDreaming";
+    private final String portNumber = "1433";
+    private final String instance = "";
+    private final String userId = "sa";
+    private final String passWord = "123456";
 }

@@ -27,6 +27,11 @@
         <link rel="stylesheet" href="assets/css/slick.css">
         <link rel="stylesheet" href="assets/css/nice-select.css">
         <link rel="stylesheet" href="assets/css/style.css">
+        <link rel="stylesheet" href="./style.css"> 
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+              integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css">
         <style>
             /* Đặt độ rộng cho form và căn giữa trang */
             .custom-form {
@@ -101,6 +106,7 @@
                 }(w, d, "zarazData", "script");
             })(window, document);
         </script>
+       
     </head>
     <body>
         <div id="preloader-active">
@@ -126,7 +132,7 @@
                             </div>
                             <div class="main-menu d-none d-lg-block">
                                 <nav>
-                                    
+
                                     <ul id="navigation">
                                         <li><a href="home.jsp">Trang chủ</a></li>
                                         <li><a href="buildproject.jsp">Start a project</a></li>

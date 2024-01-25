@@ -1,109 +1,158 @@
-body {
-    margin: 0;
-    font-family: Arial, sans-serif;
+
+.login-box {
+    -webkit-box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.1);
+    box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
 }
 
-.navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #e6f3ff;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    padding: 5px 10px; /* Cập nhật giá trị padding để giữ chiều cao là 10px */
+@media (min-width: 992px) {
+    .login-box {
+        margin: 40px 0;
+    }
 }
 
-.logo {
-    flex-grow: 1;
-    text-align: center;
+.login-box .form-wrap {
+    padding: 30px 25px;
+    border-radius: 10px;
+    -webkit-box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.1);
+    box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.1);
 }
 
-.logo img {
-    max-width: 100px;
-    height: auto;
+@media (min-width: 768px) {
+    .login-box .form-wrap {
+        padding: 45px;
+    }
 }
 
-.nav-links {
-    display: flex;
-    gap: 20px;
+@media (min-width: 992px) {
+    .login-box .form-wrap {
+        margin-top: -40px;
+        margin-bottom: -40px;
+        padding: 60px;
+    }
 }
 
-.nav-links a {
-    text-decoration: none;
-    color: #000;
-    transition: color 0.3s;
-    font-size: 18px;
-    text-transform: uppercase;
+.login-box .socials a {
+    -webkit-box-shadow: 0 3px 2px 0 rgba(0, 0, 0, 0.12);
+    box-shadow: 0 3px 2px 0 rgba(0, 0, 0, 0.12);
 }
 
-.nav-links a:hover {
-    color: #000;
-    font-weight: bold;
+.login-section {
+    position: relative;
+    z-index: 0;
 }
 
-.search-login {
-    display: flex;
-    gap: 20px;
-}
-
-.search-login input[type="text"] {
-    padding: 5px;
-    border: 1px solid #ccc;
-    border-radius: 3px;
-}
-
-.search-login button {
-    padding: 5px 10px;
-    background-color: #fff;
-    border: 1px solid #ccc;
-
-}
-#progress-container {
-    width: 50%;
-    margin: 20px auto;
-}
-
-#my-progress {
-    width: 100%;
-    height: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    background-color: #f5f5f5;
-}
-
-#my-progress::-webkit-progress-value {
-    background-color: #3498db;
-}
-footer {
-    position: fixed;
-    bottom: 0;
+.login-section::after {
+    position: absolute;
+    content: '';
+    right: 0;
     left: 0;
+    bottom: 0;
     width: 100%;
-    background-color: #333;
+    height: 100%;
+    opacity: 0.15;
+    z-index: -1;
+
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: top right;
+    -webkit-animation-duration: 3s;
+    animation-duration: 3s;
+    -webkit-animation-direction: alternate;
+    animation-direction: alternate;
+    -webkit-animation-iteration-count: infinite;
+    animation-iteration-count: infinite;
+    -webkit-animation-name: pulse;
+    animation-name: pulse;
+}
+
+.login-section::before {
+    position: absolute;
+    content: '';
+    opacity: 0.10;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+
+    background-size: cover;
+    background-position: top right;
+    -webkit-animation-duration: 6s;
+    animation-duration: 6s;
+    -webkit-animation-direction: alternate;
+    animation-direction: alternate;
+    -webkit-animation-iteration-count: infinite;
+    animation-iteration-count: infinite;
+    -webkit-animation-name: pulse;
+    animation-name: pulse;
+}
+
+.login-section .content {
+    padding: 45px;
+}
+
+.form-group .zmdi {
+    position: absolute;
+    z-index: 1;
     color: #fff;
-    padding: 20px;
+    background-color: #4e63d7;
+    border-radius: 5px;
+    height: 100%;
+    width: 45px;
     text-align: center;
+    font-size: 20px;
+    padding-top: 13px;
 }
 
-.footer-content {
-    max-width: 800px;
-    margin: 0 auto;
+.form-group input[type='text'], .form-group input[type='email'], .form-group input[type='password'] {
+    padding-left: 60px;
 }
 
-.footer-logo {
-    font-size: 24px;
-    font-weight: bold;
+.form-control {
+    border: 1px solid #e1e1e1;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    border-radius: 5px;
+    -webkit-transition: all .3s ease;
+    transition: all .3s ease;
+    background-color: #fff;
+    color: #858585;
+    font-weight: 400;
+    position: relative;
 }
 
-.footer-text {
-    margin-top: 10px;
-}
 
-.footer-links {
-    margin-top: 20px;
-}
 
-.footer-links a {
+
+
+
+.login-box .socials a {
+    -webkit-box-shadow: 0 3px 2px 0 rgba(0, 0, 0, 0.12);
+    box-shadow: 0 3px 2px 0 rgba(0, 0, 0, 0.12);
+}
+.socials a {
+    width: 35px;
+    height: 35px;
+    background-color: #6893e1;
+    border-radius: 50%;
+    -webkit-box-shadow: 0 3px 2px 0 #516cd9;
+    box-shadow: 0 3px 2px 0 #516cd9;
+    text-align: center;
     color: #fff;
-    text-decoration: none;
-    margin: 0 10px;
+    padding-top: 10px;
+    font-size: 16px;
+    margin-right: 10px;
+    -webkit-transition: all 0.3s ease;
+    transition: all 0.3s ease;
 }
+
+.bubble {
+            position: absolute;
+            background-color: #f44336;
+            color: #fff;
+            padding: 10px;
+            border-radius: 8px;
+            display: none;
+        }

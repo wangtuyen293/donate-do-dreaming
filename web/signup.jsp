@@ -6,54 +6,46 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <jsp:include page="header.jsp" />
-<section class="container mt-5">
-    <form action="signup" method="post" enctype="multipart/form-data">
-        <div class="form-group">
-            <label for="fullName">Full Name:</label>
-            <input type="text" class="form-control" id="fullName" name="fullName" required>
-        </div>
 
-        <div class="form-group">
-            <label for="userName">Username:</label>
-            <input type="text" class="form-control" id="userName" name="userName" required>
-        </div>
-
-        <div class="form-group">
-            <label for="password">Password:</label>
-            <input type="password" class="form-control" id="password" name="password" required>
-        </div>
-
-        <div class="form-group">
-            <label>Gender:</label>
-            <div class="form-check">
-                <input type="radio" class="form-check-input" id="male" name="gender" value="1" checked>
-                <label class="form-check-label" for="male">Male</label>
+<div class="container-fluid vh-100">
+    <div class="" style="margin-top:100px">
+        <div class="rounded d-flex justify-content-center">
+            <div class="col-md-4 col-sm-12 shadow-lg p-5 bg-light">
+                <div class="text-center">
+                    <h3 class="text-primary">Create Account</h3>
+                </div>
+                <div class="p-4">
+                    <form action="signup" method="post">
+                        <div class="input-group mb-3">
+                            <span class="input-group-text bg-primary"><i
+                                    class="bi bi-person-plus-fill text-white"></i></span>
+                            <input type="text" class="form-control" name="username" placeholder="Username" required>
+                        </div>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text bg-primary"><i
+                                    class="bi bi-envelope text-white"></i></span>
+                            <input type="email" class="form-control" name="email" placeholder="Email" required>
+                        </div>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text bg-primary"><i
+                                    class="bi bi-key-fill text-white"></i></span>
+                            <input type="password" class="form-control" name="password" id="password" placeholder="Password" required>
+                        </div>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text bg-primary"><i
+                                    class="bi bi-key-fill text-white"></i></span>
+                            <input type="password" class="form-control" name="confirmPassword" id="confirmPassword" placeholder="Confirm Password" required>
+                        </div>
+                        <div class="d-grid col-12 mx-auto">
+                            <button type="submit" class="btn btn-primary" >Sign up</button>
+                        </div>
+                        <p class="text-center mt-3">Already have an account?
+                            <a href="login.jsp" class="btn btn-custom">Log in</a>
+                        </p>
+                    </form>
+                </div>
             </div>
-            <div class="form-check">
-                <input type="radio" class="form-check-input" id="female" name="gender" value="2">
-                <label class="form-check-label" for="female">Female</label>
-            </div>
         </div>
-
-        <div class="form-group">
-            <label for="dateOfBirth">Date of Birth:</label>
-            <input type="date" class="form-control" id="dateOfBirth" name="dateOfBirth" required>
-        </div>
-        <div class="form-group">
-            <label for="avatar">Avatar:</label>
-            <input type="file" class="form-control" id="avatar" name="avatar" >
-        </div>
-
-        <div class="form-group">
-            <label for="email">Email:</label>
-            <input type="email" class="form-control" id="email" name="email" required>
-        </div>
-
-        <div class="form-group">
-            <label for="phoneNumber">Phone Number:</label>
-            <input type="text" class="form-control" id="phoneNumber" name="phoneNumber">
-        </div>
-        <button type="submit" class="btn btn-primary">Sign Up</button>
-    </form>
-</section>
+    </div>
+</div>
 <jsp:include page="footer.jsp" />

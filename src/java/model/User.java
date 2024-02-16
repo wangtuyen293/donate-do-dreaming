@@ -36,6 +36,7 @@ public class User {
     }
 
     public User(String fullName, int gender, Date dateOfBirth, String avatar, String email, String phoneNumber) {
+        
         this.fullName = fullName;
         this.gender = gender;
         this.dateOfBirth = dateOfBirth;
@@ -43,6 +44,18 @@ public class User {
         this.email = email;
         this.phoneNumber = phoneNumber;
     }
+
+    public User(int userId, String fullName, int gender, Date dateOfBirth, String avatar, String email, String phoneNumber) {
+        this.userId = userId;
+        this.fullName = fullName;
+        this.gender = gender;
+        this.dateOfBirth = dateOfBirth;
+        this.avatar = avatar;
+        this.email = email;
+        this.phoneNumber = phoneNumber;
+    }
+    
+    
     
     public User() {
         

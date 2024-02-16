@@ -30,6 +30,8 @@
         <link rel="stylesheet" href="assets/css/nice-select.css">
         <link rel="stylesheet" href="assets/css/style.css">
         <link rel="stylesheet" href="./style.css"> 
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
               integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
@@ -109,35 +111,35 @@
             })(window, document);
         </script>
         <style>
-        /* Add your custom styles here */
+            /* Add your custom styles here */
 
-        /* Adjust the alignment of the logo in the header */
-        .header-area .logo {
-            text-align: center;
-        }
+            /* Adjust the alignment of the logo in the header */
+            .header-area .logo {
+                text-align: center;
+            }
 
-        /* Style the search form in the header */
-        .header-right form {
-            display: flex;
-            align-items: center;
-        }
+            /* Style the search form in the header */
+            .header-right form {
+                display: flex;
+                align-items: center;
+            }
 
-        /* Style the login dropdown menu */
-        .header-right .dropdown-menu {
-            left: auto;
-            right: 0;
-        }
+            /* Style the login dropdown menu */
+            .header-right .dropdown-menu {
+                left: auto;
+                right: 0;
+            }
 
-        /* Make the dropdown content appear from right to left */
-        .header-right .dropdown-menu {
-            transform: translateX(-90%);
-        }
+            /* Make the dropdown content appear from right to left */
+            .header-right .dropdown-menu {
+                transform: translateX(-90%);
+            }
 
-        /* Add margin to the login button */
-        .header-right .nav-link {
-            margin-left: 10px;
-        }
-    </style>
+            /* Add margin to the login button */
+            .header-right .nav-link {
+                margin-left: 10px;
+            }
+        </style>
     </head>
     <body>
         <div id="preloader-active">

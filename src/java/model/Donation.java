@@ -11,6 +11,7 @@ package model;
 import java.sql.Date;
 
 public class Donation {
+
     private int donationId;
     private int projectId;
     private int userId;
@@ -18,9 +19,12 @@ public class Donation {
     private int paymentMethodId;
     private double amountOfMoney;
     private Date donationTime;
-    private int receiveGift;
+    private String receiveGift;
+    private User user;
+  
 
-    public Donation(int donationId, int projectId, int userId, int giftId, int paymentMethodId, double amountOfMoney, Date donationTime, int receiveGift) {
+
+    public Donation(int donationId, int projectId, int userId, int giftId, int paymentMethodId, double amountOfMoney, Date donationTime, String receiveGift) {
         this.donationId = donationId;
         this.projectId = projectId;
         this.userId = userId;
@@ -30,6 +34,24 @@ public class Donation {
         this.donationTime = donationTime;
         this.receiveGift = receiveGift;
     }
+
+    public Donation(int donationId, int projectId, int userId, double amountOfMoney, Date donationTime, User user) {
+        this.donationId = donationId;
+        this.projectId = projectId;
+        this.userId = userId;
+        this.amountOfMoney = amountOfMoney;
+        this.donationTime = donationTime;
+        this.user = user;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+    
 
     public int getDonationId() {
         return donationId;
@@ -87,14 +109,12 @@ public class Donation {
         this.donationTime = donationTime;
     }
 
-    public int getReceiveGift() {
+    public String getReceiveGift() {
         return receiveGift;
     }
 
-    public void setReceiveGift(int receiveGift) {
+    public void setReceiveGift(String receiveGift) {
         this.receiveGift = receiveGift;
     }
 
-    
 }
-

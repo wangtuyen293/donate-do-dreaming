@@ -4,6 +4,8 @@
  */
 package controller;
 
+import google.IJavamail;
+import google.EmailService;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Random;

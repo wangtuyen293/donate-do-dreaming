@@ -2,22 +2,26 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
-package controller;
+package controller.home;
 
+import dao.DAO;
+import model.User;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.Random;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.*;
 
 /**
  *
  * @author quang
  */
-public class SendEmailServlet extends HttpServlet {
+@MultipartConfig(maxFileSize = 16177215)
+public class SignUpServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -36,10 +40,10 @@ public class SendEmailServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet SendEmailServlet</title>");
+            out.println("<title>Servlet SignUpServlet</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet SendEmailServlet at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet SignUpServlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -54,23 +58,10 @@ public class SendEmailServlet extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    String randomCode = generateRandomNumber();
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String to = request.getParameter("email");
-        IJavamail emailService = new EmailService();
-        
-        emailService.send(to, "Mã code của bạn là:", randomCode);
-        request.getRequestDispatcher("fillcode.jsp").forward(request, response);
-    }
-
-    public static String generateRandomNumber() {
-        Random random = new Random();
-        int randomNumber = random.nextInt(10000); // Sinh số ngẫu nhiên từ 0 đến 9999
-
-        // Định dạng số để có 4 chữ số (0012, 0123, 1234, ...)
-        return String.format("%04d", randomNumber);
+        processRequest(request, response);
     }
 
     /**
@@ -82,10 +73,29 @@ public class SendEmailServlet extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String code = request.getParameter("code");
-        if (code.equalsIgnoreCase(randomCode)){
-            request.getRequestDispatcher("changePassword.jsp").forward(request, response);
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        String userName = request.getParameter("username");
+        String password = request.getParameter("password");
+        String email = request.getParameter("email");
+        String rwpw = request.getParameter("confirmPassword");
+        if (!password.equalsIgnoreCase(rwpw)) {
+            String alertMessage = "Password and Confirm Password do not match. Please try again.";
+            String redirectUrl = "signup.jsp";
+
+            String script = "<script>alert('" + alertMessage + "');";
+            script += "window.location.href='" + redirectUrl + "';</script>";
+
+            response.getWriter().println(script);
+        } else {
+            try {
+                DAO dao = new DAO();
+                User user = new User(null, userName, password, 0, null, null, email, null, 0);
+                dao.addUser(user);
+                request.getRequestDispatcher("result.jsp").forward(request, response);
+            } catch (Exception ex) {
+                Logger.getLogger(SignUpServlet.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }
 

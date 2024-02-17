@@ -1,10 +1,12 @@
-package model;
+package dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Types;
+import db.DBContext;
+import model.User;
 
 public class DAO extends DBContext {
 

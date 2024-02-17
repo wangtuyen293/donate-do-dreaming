@@ -2,23 +2,23 @@
 <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
     <servlet>
         <servlet-name>SignUpServlet</servlet-name>
-        <servlet-class>controller.SignUpServlet</servlet-class>
+        <servlet-class>controller.home.SignUpServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>LoginServlet</servlet-name>
-        <servlet-class>controller.LoginServlet</servlet-class>
+        <servlet-class>controller.home.LoginServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>LoginGoogleHandler</servlet-name>
-        <servlet-class>controller.LoginGoogleHandler</servlet-class>
+        <servlet-class>controller.home.LoginGoogleHandler</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>LogOutServlet</servlet-name>
-        <servlet-class>controller.LogOutServlet</servlet-class>
+        <servlet-class>controller.home.LogOutServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>EditProfileServlet</servlet-name>
-        <servlet-class>controller.EditProfileServlet</servlet-class>
+        <servlet-class>controller.home.EditProfileServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>AvatarServlet</servlet-name>
@@ -26,11 +26,11 @@
     </servlet>
     <servlet>
         <servlet-name>SendEmailServlet</servlet-name>
-        <servlet-class>controller.SendEmailServlet</servlet-class>
+        <servlet-class>controller.home.SendEmailServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>ChangePasswordServlet</servlet-name>
-        <servlet-class>controller.ChangePasswordServlet</servlet-class>
+        <servlet-class>controller.home.ChangePasswordServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>SignUpServlet</servlet-name>

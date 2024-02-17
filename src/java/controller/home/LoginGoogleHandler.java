@@ -2,9 +2,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
-package controller;
+package controller.home;
 
-import model.Constants;
+import constants.Constants;
 import model.UserGoogleDto;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;

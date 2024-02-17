@@ -1,8 +1,8 @@
-package controller;
+package controller.home;
 
 import java.io.File;
 import java.io.FileOutputStream;
-import model.DAO;
+import dao.DAO;
 import model.User;
 import java.io.IOException;
 import java.io.InputStream;

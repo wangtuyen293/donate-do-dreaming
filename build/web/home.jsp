@@ -7,10 +7,8 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <jsp:include page="header.jsp" />
 <main>
-
     <div class="slider-area ">
         <div class="slider-active">
-
             <div class="single-slider slider-height d-flex align-items-center slide-bg">
                 <div class="container">
                     <div class="row justify-content-between align-items-center">

@@ -5,39 +5,36 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.logging.Level;
 import java.util.logging.Logger;
-import model.Category;
 
 /**
  *
  * @author OS
  */
-public class CategoryDAO {
+public class FeedbackDAO {
+
     private Connection conn = null;
     private PreparedStatement ps = null;
     private ResultSet rs = null;
 
-    private static final Logger logger = Logger.getLogger(CategoryDAO.class.getName());
-    
-    public List<Category> getAllCategories() {
-        List<Category> list = new ArrayList<>();
-        String sql = "SELECT * FROM Category";
+    public int countFeedback() {
+        int count = 0;
+        String sql = "SELECT COUNT(*) as 'count'\n"
+                + "FROM Feedback";
         try {
             conn = new DBContext().getConnection();
             ps = conn.prepareStatement(sql);
             rs = ps.executeQuery();
             while (rs.next()) {
-                Category category = new Category(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4));
-                list.add(category);
+                count = rs.getInt(1);
             }
         } catch (Exception ex) {
-            System.out.println(ex);
+            Logger.getLogger(FeedbackDAO.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             closeResources(conn, ps, rs);
         }
-        return list;
+        return count;
     }
     
     // Close database resources (connection, statement, and result set)
@@ -55,10 +52,5 @@ public class CategoryDAO {
         } catch (SQLException e) {
             System.out.println("Error closing resources: " + e.getMessage());
         }
-    }
-    
-    public static void main(String[] args) {
-        CategoryDAO categoryDAO = new CategoryDAO();
-        System.out.println(categoryDAO.getAllCategories());
     }
 }

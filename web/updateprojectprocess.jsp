@@ -54,7 +54,7 @@
                     ></textarea>
             </div>
             <div>
-                <label>Image</label><br /> <input type="file" name="image">
+                <label>Image</label><br /> <input type="file" name="files">
             </div>
             <div>
                 <button
@@ -66,6 +66,15 @@
                 </button>
             </div>
         </form>
+        <%
+            String msg = (String) session.getAttribute("msg");
+            if (msg != null) {
+        %>
+        <h4 class="text-center text-success"><%=msg%></h4>
+        <%
+                session.removeAttribute("msg");
+            }
+        %>
     </div>
 </main>
 <jsp:include page="footer.jsp" />

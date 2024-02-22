@@ -9,8 +9,10 @@ package model;
  * @author quang
  */
 import java.sql.Date;
+import java.time.LocalDate;
 
 public class ProjectProcess {
+
     private int processId;
     private Date updateDate;
     private String planOfPhase;
@@ -34,14 +36,14 @@ public class ProjectProcess {
         this.projectId = projectId;
     }
 
-    public ProjectProcess( Date updateDate, String planOfPhase, double moneyCost, String image, String description, Project project) {
-
+    
+    
+    public ProjectProcess(Date updateDate, String planOfPhase, double moneyCost, String image, String description) {
         this.updateDate = updateDate;
         this.planOfPhase = planOfPhase;
         this.moneyCost = moneyCost;
         this.image = image;
         this.description = description;
-        this.project = project;
     }
 
     public Project getProject() {
@@ -61,7 +63,18 @@ public class ProjectProcess {
     }
 
     public Date getUpdateDate() {
-        return updateDate;
+        // Convert it to a LocalDate
+        Date originalDate = this.updateDate;
+
+        LocalDate localDate = originalDate.toLocalDate();
+
+        // Add 2 days
+        LocalDate updatedDate = localDate.plusDays(1);
+
+        // Convert the updated LocalDate back to java.sql.Date
+        Date updatedSqlDate = Date.valueOf(updatedDate);
+
+        return updatedSqlDate;
     }
 
     public void setUpdateDate(Date updateDate) {
@@ -124,6 +137,4 @@ public class ProjectProcess {
         this.projectId = projectId;
     }
 
-    
 }
-

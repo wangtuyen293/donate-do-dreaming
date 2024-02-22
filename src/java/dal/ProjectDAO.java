@@ -41,28 +41,28 @@ public class ProjectDAO {
             PreparedStatement st = con.prepareStatement(sql);
             st.setString(1, project.getProjectName());
             st.setDouble(2, project.getProjectTarget());
-            st.setString(3, project.getProjectImage());
-            st.setDouble(4, project.getDonatedAmountOfMoney());
-            st.setString(5, project.getProjectStatus());
+            st.setString(3, null);
+            st.setDouble(4, 0);
+            st.setString(5, "New");
             st.setString(6, project.getProjectDescription());
             st.setDate(7, project.getStartDate());
             st.setDate(8, project.getEndDate());
-            st.setInt(9, project.getIsApproved());
+            st.setInt(9, 0);
             st.setInt(10, project.getUserId());
-            st.setInt(11,project.getCharityOrganizationId());
+            st.setInt(11, 0);
             st.setInt(12, project.getCategoryId());
             st.executeUpdate();
+            ConnectDB.closeConnection(con);
+
         } catch (SQLException e) {
             e.printStackTrace();
             throw new RuntimeException("Lỗi tạo project: " + e.getMessage());
-        } finally {
-            // Đảm bảo luôn đóng kết nối database
-            ConnectDB.closeConnection(con);
         }
     }
+
 //    public int createProject(Project project) {
 //        int kq = 0;
-//        
+//
 //        try {
 //            Connection con = ConnectDB.getConnection();
 //            String sql = "INSERT INTO [dbo].[Project]\n"
@@ -75,28 +75,28 @@ public class ProjectDAO {
 //                    + "           ,[startDate]\n"
 //                    + "           ,[endDate]\n"
 //                    + "           ,[isApproved]\n"
-//                    + "           ,[userId]         \n"
+//                    + "           ,[userId]\n"
+//                    + "           ,[charityOrganizationId]\n"
 //                    + "           ,[categoryId])\n"
 //                    + "     VALUES\n"
 //                    + "           (?,?,?,?,?,?,?,?,?,?,?)";
 //            PreparedStatement st = con.prepareStatement(sql);
 //            st.setString(1, project.getProjectName());
 //            st.setDouble(2, project.getProjectTarget());
-//            st.setString(3, project.getProjectImage());
-//            st.setDouble(4, project.getDonatedAmountOfMoney());
-//            st.setString(5, project.getProjectStatus());
+//            st.setString(3, null);
+//            st.setDouble(4, 0);
+//            st.setString(5, "New");
 //            st.setString(6, project.getProjectDescription());
 //            st.setDate(7, project.getStartDate());
 //            st.setDate(8, project.getEndDate());
-//            st.setInt(9, project.getIsApproved());
+//            st.setInt(9, 0);
 //            st.setInt(10, project.getUserId());
+//            st.setInt(11, 0);
 //            st.setInt(11, project.getCategoryId());
 //            kq = st.executeUpdate();
-//            ConnectDB.closeConnection(con);
 //        } catch (SQLException e) {
 //            e.printStackTrace();
-//            throw new RuntimeException("Lỗi tạo project: " + e.getMessage());
-//        } 
+//        }
 //        return kq;
 //
 //    }
@@ -170,7 +170,7 @@ public class ProjectDAO {
                 Integer charityOrganizationId = rs.getInt("charityOrganizationId");
                 Integer categoryId = rs.getInt("categoryId");
 
-                Project p = new Project(projectId, name, target, img, amount, status, description, startDate, endDate, 0, 0, categoryId);
+                Project p = new Project(projectId, name, target, img, amount, status, description, startDate, endDate, userId, charityOrganizationId, categoryId);
                 return p;
             }
             ConnectDB.closeConnection(con);

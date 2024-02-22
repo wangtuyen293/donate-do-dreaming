@@ -4,7 +4,9 @@
  */
 package controller;
 
+import dal.ProjectDAO;
 import dal.ProjectProcessDAO;
+import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.nio.file.Path;
@@ -14,6 +16,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 import model.Project;
 import model.ProjectProcess;
@@ -63,7 +66,12 @@ public class AddProjectProcess extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.getWriter().append("Served at: ").append(request.getContextPath());
+        String id_raw = request.getParameter("pid");
+        int id = Integer.parseInt(id_raw);
+        ProjectDAO pDAO = new ProjectDAO();
+        Project p = pDAO.selectProjectByID(id);
+        request.setAttribute("p", p);
+        request.getRequestDispatcher("updateprojectprocess.jsp");
     }
 
     /**
@@ -77,10 +85,11 @@ public class AddProjectProcess extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        Project p = (Project) request.getAttribute("project");
+        HttpSession session = request.getSession();
 
         java.util.Date currentDate = new java.util.Date();
         java.sql.Date sqlDate = new java.sql.Date(currentDate.getTime());
+
         String planOfPhase = request.getParameter("planOfPhase");
 
         String moneyCost_raw = request.getParameter("moneyCost");
@@ -88,12 +97,23 @@ public class AddProjectProcess extends HttpServlet {
 
         String description = request.getParameter("description");
 
-        
+        Part p = request.getPart("files");
+        String fileName = p.getSubmittedFileName();
 
-        ProjectProcess pp = new ProjectProcess(sqlDate, planOfPhase, moneyCost, null, description, p);
+        ProjectProcess pp = new ProjectProcess(sqlDate, planOfPhase, moneyCost, fileName, description);
         ProjectProcessDAO ppDAO = new ProjectProcessDAO();
-        ppDAO.updateProjectProcess(pp);
-        response.sendRedirect("project-detail");
+
+        int i = ppDAO.updateProjectProcess(pp);
+        if (i == 1) {
+            String path = getServletContext().getRealPath("") + "projectprocess";
+
+            p.write(path + File.separator + fileName);
+
+            session.setAttribute("msg", "Success");
+            response.sendRedirect("addprojectprocess.jsp");
+        } else {
+            response.sendRedirect("home.jsp");
+        }
     }
 
 }

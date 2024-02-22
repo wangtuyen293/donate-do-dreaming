@@ -47,8 +47,7 @@ public class Project {
         this.categoryId = categoryId;
     }
 
-    public Project(int projectId, String projectName, double projectTarget, String projectImage, double donatedAmountOfMoney, String projectStatus, String projectDescription, Date startDate, Date endDate, int isApproved, int userId, int charityOrganizationId, int categoryId) {
-        this.projectId = projectId;
+    public Project(String projectName, double projectTarget, String projectImage, double donatedAmountOfMoney, String projectStatus, String projectDescription, Date startDate, Date endDate, int isApproved, int userId, int charityOrganizationId, int categoryId) {
         this.projectName = projectName;
         this.projectTarget = projectTarget;
         this.projectImage = projectImage;
@@ -76,6 +75,18 @@ public class Project {
         this.userId = userId;
         this.categoryId = categoryId;
     }
+
+    public Project(String projectName, double projectTarget, String projectDescription, Date startDate, Date endDate, int userId, int categoryId) {
+        this.projectName = projectName;
+        this.projectTarget = projectTarget;
+        this.projectDescription = projectDescription;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.userId = userId;
+        this.categoryId = categoryId;
+    }
+
+    
 
     
 

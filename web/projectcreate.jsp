@@ -20,7 +20,7 @@
                 <textarea class="form-control" id="post-content" name="description" rows="10" required></textarea>
             </div>
 <!--            <div class="mb-3">
-                <label>Image</label><br /> <input type="file" name="image" required>
+                <label>Image</label><br /> <input type="file" name="files" class="form-control" required>
             </div>-->
             <div class="mb-3">
                 <label for="post-goal" class="form-label">Target</label>
@@ -47,7 +47,6 @@
             <button type="submit" class="btn btn-primary" style="border-radius: 25px; margin-top: 15px">Start</button>
             <script src="assets/js/validate-form.js"></script>
         </form>
-
     </div>
 
     <script

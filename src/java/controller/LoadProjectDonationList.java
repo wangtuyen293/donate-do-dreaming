@@ -25,27 +25,22 @@ import model.Project;
 @WebServlet(name="LoadProjectDonationList", urlPatterns={"/load-pdonationlist"})
 public class LoadProjectDonationList extends HttpServlet {
    
-   
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        Donation donation = (Donation) request.getAttribute("donation");
-        DonationDAO dDAO = new DonationDAO();
+        String id_raw = request.getParameter("pid");
+        int id = Integer.parseInt(id_raw);
         ProjectDAO pDAO = new ProjectDAO();
-        Project p = pDAO.selectProjectByID(donation.getProjectId());
-        ArrayList<Donation> listAll = dDAO.getAllDonation();
-        ArrayList<Donation> dlist = new ArrayList<>();
-        for (Donation d :listAll){
-            if (d.getProjectId() == donation.getProjectId()){
-                dlist.add(d);
-            }
-        }        
+        Project p = pDAO.selectProjectByID(id);
+        DonationDAO dDAO = new DonationDAO();
+        ArrayList<Donation> dlist = dDAO.getAllDonationByPid(id); 
+        
         int num = dlist.size();
+    
         request.setAttribute("dlist", dlist);  
         request.setAttribute("num", num);
-        request.setAttribute("p", p);
-        request.getRequestDispatcher("projectdonationlist.jsp").forward(request, response);
-        // work in jsp 
+        request.setAttribute("p", p.getProjectName());
+        request.getRequestDispatcher("projectdonationlist.jsp").forward(request, response); 
     } 
 
     /** 

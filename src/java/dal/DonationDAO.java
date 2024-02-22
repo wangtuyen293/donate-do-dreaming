@@ -53,12 +53,13 @@ public class DonationDAO {
         return dlist;
     }
 
-    public ArrayList<Donation> getAllDonationInfo() {
+    public ArrayList<Donation> getAllDonationByPid(int pid) {
         ArrayList<Donation> dlist = new ArrayList<>();
         try {
             Connection conn = ConnectDB.getConnection();
-            String sql = "SELECT * FROM [dbo].[Donation]";
+            String sql = "SELECT * FROM [dbo].[Donation] where projectId = ? ";
             PreparedStatement st = conn.prepareStatement(sql);
+            st.setInt(1, pid);
             ResultSet rs = st.executeQuery();
             while (rs.next()) {
                 int userID = rs.getInt("userId");
@@ -74,11 +75,5 @@ public class DonationDAO {
         } catch (SQLException e) {
         }
         return dlist;
-    }
-
-    public static void main(String[] args) {
-        DonationDAO d = new DonationDAO();
-        ArrayList<Donation> list = d.getAllDonationInfo();
-        System.out.println(list.get(0).getUser());
     }
 }

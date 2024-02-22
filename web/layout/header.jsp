@@ -71,7 +71,7 @@
                             <% } else { %>
                             <li class="nav-item">
                                 <a class="nav-link" href="login.jsp" style="margin-left: 10px;">
-                                    <button type="button" class="btn btn-outline-info">Log in</button>
+                                    <button type="button" class="btn btn-outline-info">Login</button>
                                 </a>
                             </li>
                             <% }%>

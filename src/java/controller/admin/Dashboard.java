@@ -11,20 +11,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import model.Users;
+import model.User;
 
 /**
  *
  * @author OS
  */
 public class Dashboard extends HttpServlet {
-
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try {
             HttpSession session = request.getSession();
-            Users user = (Users) session.getAttribute("user");
+            User user = (User) session.getAttribute("user");
             PrintWriter out = response.getWriter();
             
             if (user.getUserTypeId() == 1) {

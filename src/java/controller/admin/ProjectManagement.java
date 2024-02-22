@@ -1,7 +1,6 @@
 package controller.admin;
 
 import dao.ProjectDAO;
-import dao.UserDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
@@ -11,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import model.Project;
-import model.Users;
+import model.User;
 
 /**
  *
@@ -27,7 +26,7 @@ public class ProjectManagement extends HttpServlet {
         ProjectDAO projectDAO = new ProjectDAO();
         PrintWriter out = response.getWriter();
         try {
-            Users user = (Users) session.getAttribute("user");
+            User user = (User) session.getAttribute("user");
             if (user.getUserTypeId() == 1) {
                 if (action == null || action.equalsIgnoreCase("")) {
                     List<Project> projects = projectDAO.getProjects();

@@ -1,14 +1,12 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package model;
+
+import java.io.Serializable;
 
 /**
  *
- * @author quang
+ * @author OS
  */
-public class CharityOrganization {
+public class CharityOrganization implements Serializable {
 
     private int charityOrganizationId;
     private String charityOrganizationName;

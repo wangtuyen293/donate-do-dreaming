@@ -9,8 +9,10 @@ package model;
  * @author quang
  */
 import java.sql.Date;
+import java.time.LocalDate;
 
 public class Project {
+
     private int projectId;
     private String projectName;
     private double projectTarget;
@@ -20,9 +22,15 @@ public class Project {
     private String projectDescription;
     private Date startDate;
     private Date endDate;
+    private int isApproved;
     private int userId;
     private int charityOrganizationId;
     private int categoryId;
+    private User user;
+    private Category category;
+
+    public Project() {
+    }
 
     public Project(int projectId, String projectName, double projectTarget, String projectImage, double donatedAmountOfMoney, String projectStatus, String projectDescription, Date startDate, Date endDate, int userId, int charityOrganizationId, int categoryId) {
         this.projectId = projectId;
@@ -37,6 +45,62 @@ public class Project {
         this.userId = userId;
         this.charityOrganizationId = charityOrganizationId;
         this.categoryId = categoryId;
+    }
+
+    public Project(int projectId, String projectName, double projectTarget, String projectImage, double donatedAmountOfMoney, String projectStatus, String projectDescription, Date startDate, Date endDate, int isApproved, int userId, int charityOrganizationId, int categoryId) {
+        this.projectId = projectId;
+        this.projectName = projectName;
+        this.projectTarget = projectTarget;
+        this.projectImage = projectImage;
+        this.donatedAmountOfMoney = donatedAmountOfMoney;
+        this.projectStatus = projectStatus;
+        this.projectDescription = projectDescription;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.isApproved = isApproved;
+        this.userId = userId;
+        this.charityOrganizationId = charityOrganizationId;
+        this.categoryId = categoryId;
+    }
+
+    public Project(String projectName, double projectTarget, String projectImage, double donatedAmountOfMoney, String projectStatus, String projectDescription, Date startDate, Date endDate, int isApproved, int userId, int categoryId) {
+        this.projectName = projectName;
+        this.projectTarget = projectTarget;
+        this.projectImage = projectImage;
+        this.donatedAmountOfMoney = donatedAmountOfMoney;
+        this.projectStatus = projectStatus;
+        this.projectDescription = projectDescription;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.isApproved = isApproved;
+        this.userId = userId;
+        this.categoryId = categoryId;
+    }
+
+    
+
+    public int getIsApproved() {
+        return isApproved;
+    }
+
+    public void setIsApproved(int isApproved) {
+        this.isApproved = isApproved;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
     }
 
     public int getProjectId() {
@@ -135,6 +199,4 @@ public class Project {
         this.categoryId = categoryId;
     }
 
-    
 }
-

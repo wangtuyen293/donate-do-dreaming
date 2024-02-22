@@ -7,6 +7,7 @@ package dal;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import model.Project;
 import model.ProjectProcess;
 
 /**
@@ -18,27 +19,27 @@ public class ProjectProcessDAO {
     public int updateProjectProcess(ProjectProcess pp) {
         int kq = 0;
         try {
-            Connection conn = ConnectDB.getConnection();
+            Connection con = ConnectDB.getConnection();
             String sql = "INSERT INTO [dbo].[ProjectProcess]\n"
                     + "           ([updateDate]\n"
                     + "           ,[planOfPhase]\n"
                     + "           ,[moneyCost]\n"
                     + "           ,[image]\n"
-                    + "           ,[description])\n"
+                    + "           ,[description]\n"
+                    + "           ,[projectId])\n"
                     + "     VALUES\n"
-                    + "           (?,?,?,?,?)";
-            PreparedStatement st = conn.prepareStatement(sql);
+                    + "           (?,?,?,?,?,?,?,?)";
+            PreparedStatement st = con.prepareStatement(sql);
             st.setDate(1, pp.getUpdateDate());
             st.setString(2, pp.getPlanOfPhase());
-            st.setDouble(3,pp.getMoneyCost());
-            st.setString(4,pp.getImage());
-            st.setString(4, pp.getDescription());
-            
-            kq = st.executeUpdate();
-            ConnectDB.closeConnection(conn);
+            st.setDouble(3, pp.getMoneyCost());
+            st.setString(4, pp.getImage());
+            st.setString(5, pp.getDescription());
+            st.setInt(6, pp.getProject().getProjectId());
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return kq;
     }
+
 }

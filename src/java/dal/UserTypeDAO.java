@@ -38,6 +38,7 @@ public class UserTypeDAO {
     public static void main(String[] args) {
         UserTypeDAO c = new UserTypeDAO();
         List<UserType> list = c.getAllUserType();
-        System.out.println(list.get(0).getUserTypeName());
+        System.out.println(list.get(2).getUserTypeId());
+        System.out.println(list.get(2).getUserTypeName());
     }
 }

@@ -1,26 +1,26 @@
 <%-- 
-    Document   : buildproject.jsp
-    Created on : Jan 25, 2024, 2:37:15 PM
+    Document   : projectcreate
+    Created on : Feb 21, 2024, 9:42:48 AM
     Author     : VanHuy
 --%>
+
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <jsp:include page="header.jsp" />
-!<!doctype html>
 <main>
     <div class="container">
         <h1>Create a Project</h1>
-        <form action="build-project" method="post">
+        <form action="create-project" method="post" enctype="multipart/form-data">
             <div class="mb-3">
                 <label for="post-title" class="form-label">Title</label>
                 <input type="text" class="form-control" id="post-title" name="title" required>
             </div>
             <div class="mb-3">
                 <label for="post-content" class="form-label">Description </label>
-                <textarea class="form-control" id="post-content" name="content" rows="10" required></textarea>
+                <textarea class="form-control" id="post-content" name="description" rows="10" required></textarea>
             </div>
             <div class="mb-3">
-                <label>Image</label><br /> <input type="file" name="image">
+                <label>Image</label><br /> <input type="file" name="image" required>
             </div>
             <div class="mb-3">
                 <label for="post-goal" class="form-label">Target</label>
@@ -30,11 +30,12 @@
                 <label for="post-category" class="form-label">Category</label>
                 <select class="form-select" id="post-category" name="category" required>
                     <option value="null">Select a Category</option>
-                    <c:forEach items="${clist}" var="c">
+                    <c:forEach items="${requestScope.clist}" var="c">
                         <option value="${c.categoryId}">${c.categoryName}</option>
                     </c:forEach>
                 </select>
             </div>
+
             <div class="mb-3">
                 <label for="post-start-date" class="form-label">Start Date</label>
                 <input type="date" class="form-control" id="post-start-date" name="startDate" required>
@@ -44,8 +45,11 @@
                 <input type="date" class="form-control" id="post-end-date" name="endDate" required>
             </div>
             <button type="submit" class="btn btn-primary" style="border-radius: 25px; margin-top: 15px">Start</button>
+            <script src="assets/js/validate-form.js"></script>
         </form>
-
+       
+        <div class="alert alert-success" style="margin-top: 25px">Project Created Success!</div>
+  
     </div>
 
     <script

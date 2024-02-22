@@ -20,6 +20,7 @@ public class ProjectProcess {
     private int userId;
     private int charityOrganizationId;
     private int projectId;
+    private Project project;
 
     public ProjectProcess(int processId, Date updateDate, String planOfPhase, double moneyCost, String image, String description, int userId, int charityOrganizationId, int projectId) {
         this.processId = processId;
@@ -31,6 +32,24 @@ public class ProjectProcess {
         this.userId = userId;
         this.charityOrganizationId = charityOrganizationId;
         this.projectId = projectId;
+    }
+
+    public ProjectProcess( Date updateDate, String planOfPhase, double moneyCost, String image, String description, Project project) {
+
+        this.updateDate = updateDate;
+        this.planOfPhase = planOfPhase;
+        this.moneyCost = moneyCost;
+        this.image = image;
+        this.description = description;
+        this.project = project;
+    }
+
+    public Project getProject() {
+        return project;
+    }
+
+    public void setProject(Project project) {
+        this.project = project;
     }
 
     public int getProcessId() {

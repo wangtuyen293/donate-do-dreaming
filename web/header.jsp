@@ -168,7 +168,7 @@
 
                                     <ul id="navigation">
                                         <li><a href="home.jsp">Trang chủ</a></li>
-                                        <li><a href="buildproject.jsp">Start a project</a></li>
+                                        <li><a href="create-project">Start a project</a></li>
                                         <li><a href="allproject.jsp">Toàn bộ các dự án</a></li>
                                         <li><a href="contact.jsp">Contact</a></li>
                                     </ul>

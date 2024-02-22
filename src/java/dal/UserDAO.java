@@ -10,6 +10,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 import model.User;
 
 /**
@@ -82,7 +83,7 @@ public class UserDAO {
 
     public static void main(String[] args) {
         UserDAO u = new UserDAO();
-        User list = u.selectUserById(1);
-        System.out.println(list.getFullName());
+        List<User> list = u.getAllUsers();
+        System.out.println(list.get(0).getUserTypeId());
     }
 }

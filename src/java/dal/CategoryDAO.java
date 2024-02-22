@@ -48,6 +48,6 @@ public class CategoryDAO {
     public static void main(String[] args) {
         CategoryDAO c = new CategoryDAO();
         ArrayList<Category> list = c.getAllCategory();
-        System.out.println(list.get(0).getCategoryName());
+        System.out.println(list.get(1).getCategoryName());
     }
 }

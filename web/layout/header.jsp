@@ -12,7 +12,7 @@
         <div class="preloader-inner position-relative">
             <div class="preloader-circle"></div>
             <div class="preloader-img pere-text">
-                <img src="assets/img/logo/dendi2.png" alt>
+                <img src="assets/img/logo/dendi2.png" alt="logo">
             </div>
         </div>
     </div>
@@ -22,23 +22,22 @@
         <div class="main-header header-sticky">
             <div class="container-fluid">
                 <div class="menu-wrapper">
-
                     <div class="logo">
-                        <a href="home.jsp"><img src="assets/img/logo/dendi2.png" alt></a>
+                        <a href="home.jsp"><img src="assets/img/logo/dendi2.png" alt="logo"></a>
                     </div>
                     <div class="main-menu d-none d-lg-block">
                         <nav>
 
                             <ul id="navigation">
-                                <li><a href="home.jsp">Trang chủ</a></li>
+                                <li><a href="home.jsp">Home</a></li>
                                 <li><a href="buildproject.jsp">Start a project</a></li>
-                                <li><a href="allproject.jsp">Toàn bộ các dự án</a></li>
+                                <li><a href="allproject.jsp">Projects</a></li>
                                 <li><a href="contact.jsp">Contact</a></li>
                             </ul>
                         </nav>
                     </div>
 
-                    <div class="header-right ">
+                    <div class="header-right">
                         <ul>
                             <li>
                                 <form class="d-flex" role="search">

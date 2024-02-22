@@ -1,29 +1,58 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package model;
 
 /**
  *
  * @author quang
  */
-import java.sql.Date;
+import java.io.Serializable;
+import java.util.Date;
 
-public class User {
+public class User implements Serializable {
 
     private int userId;
     private String fullName;
     private String userName;
     private String password;
-    private int gender;
+    private byte gender;
     private Date dateOfBirth;
     private String avatar;
     private String email;
     private String phoneNumber;
+    private String userStatus;
+    private Date dateCreated;
     private int userTypeId;
 
-    public User(String fullName, String userName, String password, int gender, Date dateOfBirth, String avatar, String email, String phoneNumber, int userTypeId) {
+    public User(int userId, String fullName, String userName, String password, byte gender, Date dateOfBirth, String avatar, String email, String phoneNumber, String userStatus, Date dateCreated, int userTypeId) {
+        this.userId = userId;
+        this.fullName = fullName;
+        this.userName = userName;
+        this.password = password;
+        this.gender = gender;
+        this.dateOfBirth = dateOfBirth;
+        this.avatar = avatar;
+        this.email = email;
+        this.phoneNumber = phoneNumber;
+        this.userStatus = userStatus;
+        this.dateCreated = dateCreated;
+        this.userTypeId = userTypeId;
+    }
+
+    public User(int userId, String fullName, String userName, String password, byte gender, Date dateOfBirth, String avatar, String email, String phoneNumber, Date dateCreated, int userTypeId) {
+        this.userId = userId;
+        this.fullName = fullName;
+        this.userName = userName;
+        this.password = password;
+        this.gender = gender;
+        this.dateOfBirth = dateOfBirth;
+        this.avatar = avatar;
+        this.email = email;
+        this.phoneNumber = phoneNumber;
+        this.dateCreated = dateCreated;
+        this.userTypeId = userTypeId;
+    }
+
+    public User(int userId, String fullName, String userName, String password, byte gender, Date dateOfBirth, String avatar, String email, String phoneNumber, int userTypeId) {
+        this.userId = userId;
         this.fullName = fullName;
         this.userName = userName;
         this.password = password;
@@ -35,17 +64,7 @@ public class User {
         this.userTypeId = userTypeId;
     }
 
-    public User(String fullName, int gender, Date dateOfBirth, String avatar, String email, String phoneNumber) {
-        this.fullName = fullName;
-        this.gender = gender;
-        this.dateOfBirth = dateOfBirth;
-        this.avatar = avatar;
-        this.email = email;
-        this.phoneNumber = phoneNumber;
-    }
-    
     public User() {
-        
     }
 
     public int getUserId() {
@@ -80,11 +99,11 @@ public class User {
         this.password = password;
     }
 
-    public int getGender() {
+    public byte getGender() {
         return gender;
     }
 
-    public void setGender(int gender) {
+    public void setGender(byte gender) {
         this.gender = gender;
     }
 
@@ -120,12 +139,33 @@ public class User {
         this.phoneNumber = phoneNumber;
     }
 
+    public String getUserStatus() {
+        return userStatus;
+    }
+
+    public void setUserStatus(String userStatus) {
+        this.userStatus = userStatus;
+    }
+
+    public Date getDateCreated() {
+        return dateCreated;
+    }
+
+    public void setDateCreated(Date dateCreated) {
+        this.dateCreated = dateCreated;
+    }
+
     public int getUserTypeId() {
         return userTypeId;
     }
 
     public void setUserTypeId(int userTypeId) {
         this.userTypeId = userTypeId;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" + "userId=" + userId + ", fullName=" + fullName + ", userName=" + userName + ", password=" + password + ", gender=" + gender + ", dateOfBirth=" + dateOfBirth + ", avatar=" + avatar + ", email=" + email + ", phoneNumber=" + phoneNumber + ", userStatus=" + userStatus + ", dateCreated=" + dateCreated + ", userTypeId=" + userTypeId + '}';
     }
 
 }

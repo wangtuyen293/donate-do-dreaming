@@ -23,6 +23,11 @@ public class User {
     private String phoneNumber;
     private int userTypeId;
 
+    public User(String fullName, String email) {
+        this.fullName = fullName;
+        this.email = email;
+    }
+
     public User(String fullName, String userName, String password, int gender, Date dateOfBirth, String avatar, String email, String phoneNumber, int userTypeId) {
         this.fullName = fullName;
         this.userName = userName;
@@ -35,17 +40,18 @@ public class User {
         this.userTypeId = userTypeId;
     }
 
-    public User(String fullName, int gender, Date dateOfBirth, String avatar, String email, String phoneNumber) {
+    public User(String fullName, int gender, Date dateOfBirth, String email, String phoneNumber, String avatar,String userName) {
         this.fullName = fullName;
         this.gender = gender;
         this.dateOfBirth = dateOfBirth;
         this.avatar = avatar;
         this.email = email;
         this.phoneNumber = phoneNumber;
+        this.userName = userName;
     }
-    
+
     public User() {
-        
+
     }
 
     public int getUserId() {

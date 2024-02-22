@@ -5,7 +5,7 @@
 --%>
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<jsp:include page="header.jsp" />
+<jsp:include page="./layout/header.jsp" />
 <section>
     
     <h1>User Information</h1>
@@ -13,4 +13,4 @@
     <p>Email: ${user.email}</p>
     <img src="${user.picture}" alt="Describe image here" width="200">    
 </section>
-<jsp:include page="footer.jsp" />
+<jsp:include page="./layout/footer.jsp" />

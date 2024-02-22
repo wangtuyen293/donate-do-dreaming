@@ -4,6 +4,7 @@
     Author     : quang
 --%>
 
+<%@page import="model.UserGoogleDto"%>
 <%@page import="model.User"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
@@ -42,6 +43,7 @@
                 margin-top: 50px; /* Điều chỉnh khoảng cách từ trên xuống theo ý muốn */
             }
         </style>
+        <script src="./../assets/js/jquery-3.7.1.min.js"></script>
         <script nonce="d2fa0ba4-a7ad-4e33-aa0b-7c90e6c942d6">
             (function (w, d) {
                 !function (dp, dq, dr, ds) {
@@ -109,35 +111,35 @@
             })(window, document);
         </script>
         <style>
-        /* Add your custom styles here */
+            /* Add your custom styles here */
 
-        /* Adjust the alignment of the logo in the header */
-        .header-area .logo {
-            text-align: center;
-        }
+            /* Adjust the alignment of the logo in the header */
+            .header-area .logo {
+                text-align: center;
+            }
 
-        /* Style the search form in the header */
-        .header-right form {
-            display: flex;
-            align-items: center;
-        }
+            /* Style the search form in the header */
+            .header-right form {
+                display: flex;
+                align-items: center;
+            }
 
-        /* Style the login dropdown menu */
-        .header-right .dropdown-menu {
-            left: auto;
-            right: 0;
-        }
+            /* Style the login dropdown menu */
+            .header-right .dropdown-menu {
+                left: auto;
+                right: 0;
+            }
 
-        /* Make the dropdown content appear from right to left */
-        .header-right .dropdown-menu {
-            transform: translateX(-90%);
-        }
+            /* Make the dropdown content appear from right to left */
+            .header-right .dropdown-menu {
+                transform: translateX(-90%);
+            }
 
-        /* Add margin to the login button */
-        .header-right .nav-link {
-            margin-left: 10px;
-        }
-    </style>
+            /* Add margin to the login button */
+            .header-right .nav-link {
+                margin-left: 10px;
+            }
+        </style>
     </head>
     <body>
         <div id="preloader-active">

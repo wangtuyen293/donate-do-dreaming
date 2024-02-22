@@ -5,7 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<jsp:include page="header.jsp" />
+<jsp:include page="./layout/header.jsp" />
 
 <div class="container-fluid vh-100">
     <div class="" style="margin-top:100px">
@@ -48,4 +48,4 @@
         </div>
     </div>
 </div>
-<jsp:include page="footer.jsp" />
+<jsp:include page="./layout/footer.jsp" />

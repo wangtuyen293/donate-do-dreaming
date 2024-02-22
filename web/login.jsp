@@ -5,7 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<jsp:include page="header.jsp" />
+<jsp:include page="./layout/header.jsp" />
 
 <div class="container" style="margin-top: 100px">
     <div class="row">
@@ -35,7 +35,7 @@
                                     </div>
 
                                     <div class="col-12 text-lg-right">
-                                        <a href="resetpassword.jsp" class="c-black">Forgot password ?</a>
+                                        <a href="./resetpassword.jsp" class="c-black">Forgot password ?</a>
                                     </div>
                                     <div class="col-12 mt-30">
                                         <button type="submit" id="submit" class="btn btn-lg btn-custom btn-dark btn-block">Sign In
@@ -54,9 +54,8 @@
                             <h5 class="c-black mb-4 mt-n1">Or Sign In With</h5>
                             <div class="socials">
                                 <a href="#" class="zmdi zmdi-facebook"></a>
-                                <a href="https://accounts.google.com/o/oauth2/auth?scope=email profile&redirect_uri=http://localhost:8080/fundunity/logingoogle&response_type=code
-                                   &client_id=884665707063-a1e68npi45f6p3nkmlasm1m9s4vm4bmq.apps.googleusercontent.com&approval_prompt=force" class="zmdi zmdi-google"></a>
-
+                                <a href="https://accounts.google.com/o/oauth2/auth?scope=email profile&redirect_uri=http://localhost:8080/donatedodreaming/logingoogle&response_type=code
+                                   &client_id=884665707063-d40mpr7r5uqcn707n7uvtjqvj4kggqjf.apps.googleusercontent.com&approval_prompt=force" class="zmdi zmdi-google"></a>
                             </div>
                         </div>
                     </div>
@@ -67,4 +66,4 @@
 </div>
 
 
-<jsp:include page="footer.jsp" />
+<jsp:include page="./layout/footer.jsp" />

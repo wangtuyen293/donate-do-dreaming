@@ -6,7 +6,7 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<jsp:include page="header.jsp" />
+<jsp:include page="./layout/header.jsp" />
 <div class="container mt-5">
     <div class="row justify-content-center">
         <div class="col-md-6">
@@ -29,8 +29,6 @@
                         <%-- Lựa chọn thông báo dựa trên mã lỗi --%>
                         <% if (request.getParameter("error").equals("1")) { %>
                         New password and confirm password do not match.
-                        <% } else if (request.getParameter("error").equals("2")) { %>
-                        Current password is incorrect.
                         <% } %>
                     </div>
                     <% }%>
@@ -42,4 +40,4 @@
         </div>
     </div>
 </div>
-<jsp:include page="footer.jsp" />
+<jsp:include page="./layout/footer.jsp" />

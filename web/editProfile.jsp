@@ -8,12 +8,12 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
-<jsp:include page="header.jsp" />
+<jsp:include page="./layout/header.jsp" />
 <<section>
     <div class="container mt-5">
         <div class="card mx-auto" style="max-width: 400px;">
             <div class="card-header bg-primary text-white">
-                <h1 class="h3 mb-0">Edit Profile</h1>
+                <h1 class="h3 mb-0" style="text-align: center">Your Profile</h1>
             </div>
             <div class="card-body">
                 <c:if test="${not empty sessionScope.user}">
@@ -59,4 +59,4 @@
         </div>
     </div>
 </section>
-<jsp:include page="footer.jsp" />
+<jsp:include page="./layout/footer.jsp" />

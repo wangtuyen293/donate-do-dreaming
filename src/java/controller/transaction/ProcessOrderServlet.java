@@ -2,22 +2,25 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
-package controller;
+package controller.transaction;
 
+import dao.DAO;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.Random;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.*;
+import model.DonatorAddress;
 
 /**
  *
  * @author quang
  */
-public class SendEmailServlet extends HttpServlet {
+public class ProcessOrderServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -36,10 +39,10 @@ public class SendEmailServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet SendEmailServlet</title>");
+            out.println("<title>Servlet ProcessOrderServlet</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet SendEmailServlet at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet ProcessOrderServlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -54,23 +57,10 @@ public class SendEmailServlet extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    String randomCode = generateRandomNumber();
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String to = request.getParameter("email");
-        IJavamail emailService = new EmailService();
-        
-        emailService.send(to, "Your verify code is:", randomCode);
-        request.getRequestDispatcher("fillcode.jsp").forward(request, response);
-    }
-
-    public static String generateRandomNumber() {
-        Random random = new Random();
-        int randomNumber = random.nextInt(10000); // Sinh số ngẫu nhiên từ 0 đến 9999
-
-        // Định dạng số để có 4 chữ số (0012, 0123, 1234, ...)
-        return String.format("%04d", randomNumber);
+        processRequest(request, response);
     }
 
     /**
@@ -82,10 +72,32 @@ public class SendEmailServlet extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String code = request.getParameter("code");
-        if (code.equalsIgnoreCase(randomCode)){
-            request.getRequestDispatcher("changePassword.jsp").forward(request, response);
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        try {
+            String fullName = request.getParameter("fullName");
+            String phoneNumber = request.getParameter("phoneNumber");
+            String email = request.getParameter("email");
+            String province = request.getParameter("province");
+            String addressDetail = request.getParameter("addressDetail");
+            DonatorAddress da = new DonatorAddress(fullName, phoneNumber, email, province, addressDetail, 0);
+            DAO dao = new DAO();
+            dao.addDonatorAddress(da);
+            String paymentMethod = request.getParameter("payment_method");
+            if ("vietinbank".equals(paymentMethod)) {
+                response.sendRedirect("vietinbankdetails.jsp");
+            } else if ("momo".equals(paymentMethod)) {
+                response.sendRedirect("momoPayment.jsp");
+            } else if ("atm".equals(paymentMethod)) {
+                response.sendRedirect("atmPayment.jsp");
+            } else if ("vietqr".equals(paymentMethod)) {
+                response.sendRedirect("vietqrPayment.jsp");
+            } else {
+                // Xử lý trường hợp không hỗ trợ phương thức thanh toán
+                response.sendRedirect("error.jsp");
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
         }
     }
 

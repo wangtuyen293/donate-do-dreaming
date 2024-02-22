@@ -5,7 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<jsp:include page="header.jsp" />
+<jsp:include page="./layout/header.jsp" />
 <main>
 
     <div class="slider-area ">
@@ -305,4 +305,4 @@
 
 
 
-<jsp:include page="footer.jsp" />
+<jsp:include page="./layout/footer.jsp" />

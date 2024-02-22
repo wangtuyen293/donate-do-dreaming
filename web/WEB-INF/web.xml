@@ -21,16 +21,32 @@
         <servlet-class>controller.EditProfileServlet</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>AvatarServlet</servlet-name>
-        <servlet-class>controller.AvatarServlet</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>SendEmailServlet</servlet-name>
         <servlet-class>controller.SendEmailServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>ChangePasswordServlet</servlet-name>
         <servlet-class>controller.ChangePasswordServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SheetServlet</servlet-name>
+        <servlet-class>controller.transaction.SheetServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>GetDataServlet</servlet-name>
+        <servlet-class>controller.transaction.GetDataServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ProcessOrderServlet</servlet-name>
+        <servlet-class>controller.transaction.ProcessOrderServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>BankingDetailsServlet</servlet-name>
+        <servlet-class>controller.transaction.BankingDetailsServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>TransactionReportVietinbank</servlet-name>
+        <servlet-class>controller.transaction.TransactionReportVietinbank</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>SignUpServlet</servlet-name>
@@ -57,16 +73,32 @@
         <url-pattern>/editprofile</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>AvatarServlet</servlet-name>
-        <url-pattern>/avatar</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
         <servlet-name>SendEmailServlet</servlet-name>
         <url-pattern>/sendemai</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>ChangePasswordServlet</servlet-name>
         <url-pattern>/changepassword</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SheetServlet</servlet-name>
+        <url-pattern>/sheet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>GetDataServlet</servlet-name>
+        <url-pattern>/getdata</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ProcessOrderServlet</servlet-name>
+        <url-pattern>/processoder</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>BankingDetailsServlet</servlet-name>
+        <url-pattern>/bankingdetail</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>TransactionReportVietinbank</servlet-name>
+        <url-pattern>/vietinbanktrans</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

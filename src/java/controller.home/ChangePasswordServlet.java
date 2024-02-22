@@ -4,6 +4,7 @@
  */
 package controller;
 
+import dao.DAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.logging.Level;
@@ -12,7 +13,9 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.DAO;
+import dao.DAO;
+import javax.servlet.http.HttpSession;
+import model.User;
 
 /**
  *
@@ -73,10 +76,11 @@ public class ChangePasswordServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
-            String currentPassword = request.getParameter("currentPassword");
+            HttpSession session = request.getSession();
+            User user = (User) session.getAttribute("user");
+            String us = user.getUserName();
             String newPassword = request.getParameter("newPassword");
             String confirmPassword = request.getParameter("confirmPassword");
-
             // Kiểm tra xác nhận mật khẩu mới
             if (!newPassword.equals(confirmPassword)) {
                 // Mật khẩu mới và xác nhận mật khẩu mới không khớp
@@ -84,12 +88,7 @@ public class ChangePasswordServlet extends HttpServlet {
                 return;
             }
             DAO dao = new DAO();
-            boolean check = dao.checkCurrentPassword("username", currentPassword);
-            if (!check) {
-                response.sendRedirect("change-password.jsp?error=2");
-                return;
-            }
-            dao.updatePassword("username", newPassword);
+            dao.updatePassword(us, newPassword);
             response.sendRedirect("change-password.jsp?success=1");
         } catch (Exception ex) {
             Logger.getLogger(ChangePasswordServlet.class.getName()).log(Level.SEVERE, null, ex);

@@ -6,6 +6,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Types;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import model.DonatorAddress;
 import model.User;
 
 public class DAO extends DBContext {
@@ -68,19 +71,18 @@ public class DAO extends DBContext {
     }
 
     public boolean updateUserProfile(User user) throws Exception {
-        String query = "UPDATE users SET fullName=?, email=?, phoneNumber=?, gender=?, dateOfBirth=?, avatar=? WHERE username=?";
+        String query = "UPDATE Users SET fullName=?, gender=?, dateOfBirth=?,email=?, phoneNumber=?, avatar=? WHERE username=?";
         boolean success = false;
 
         try ( Connection connection = getConnection();  PreparedStatement preparedStatement = connection.prepareStatement(query)) {
 
             preparedStatement.setString(1, user.getFullName());
-            preparedStatement.setString(2, user.getEmail());
-            preparedStatement.setString(3, user.getPhoneNumber());
-            preparedStatement.setInt(4, user.getGender());
-            preparedStatement.setDate(5, user.getDateOfBirth());
+            preparedStatement.setString(4, user.getEmail());
+            preparedStatement.setString(5, user.getPhoneNumber());
+            preparedStatement.setInt(2, user.getGender());
+            preparedStatement.setDate(3, user.getDateOfBirth());
             preparedStatement.setString(6, user.getAvatar());
             preparedStatement.setString(7, user.getUserName());
-
             int rowsUpdated = preparedStatement.executeUpdate();
             success = (rowsUpdated > 0);
         } catch (SQLException e) {
@@ -139,7 +141,7 @@ public class DAO extends DBContext {
     }
 
     public void updatePassword(String username, String newPassword) throws Exception {
-        String query ="UPDATE Users SET password = ? WHERE userName = ?";
+        String query = "UPDATE Users SET password = ? WHERE userName = ?";
         try ( Connection connection = getConnection();  PreparedStatement preparedStatement = connection.prepareStatement(query)) {
 
             preparedStatement.setString(1, newPassword);
@@ -150,4 +152,21 @@ public class DAO extends DBContext {
             e.printStackTrace();
         }
     }
+
+    public void addDonatorAddress(DonatorAddress donatorAddress) throws SQLException {
+        String sql = "INSERT INTO DonatorAddress (fullName, phoneNumber, email, province, addressDetail, userId) VALUES (?, ?, ?, ?, ?, ?)";
+        try ( Connection connection = getConnection();  PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setString(1, donatorAddress.getFullName());
+            statement.setString(2, donatorAddress.getPhoneNumber());
+            statement.setString(3, donatorAddress.getEmail());
+            statement.setString(4, donatorAddress.getProvince());
+            statement.setString(5, donatorAddress.getAddressDetail());
+            statement.setInt(6, donatorAddress.getUserId());
+
+            statement.executeUpdate();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
 }

@@ -4,18 +4,18 @@
  */
 package controller;
 
-import model.Constants;
+import constants.Constants;
 import model.UserGoogleDto;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.fluent.Request;
 import org.apache.http.client.fluent.Form;
@@ -40,14 +40,15 @@ public class LoginGoogleHandler extends HttpServlet {
         String code = request.getParameter("code");
         String accessToken = getToken(code);
         UserGoogleDto user = getUserInfo(accessToken);
-        request.setAttribute("user", user);
-        System.out.println(user);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("user-info.jsp");
-        dispatcher.forward(request, response);
+        HttpSession session = request.getSession();
+        session.setAttribute("user", user);
+        Cookie accessTokenCookie = new Cookie("accessToken", accessToken);
+        accessTokenCookie.setMaxAge(60 * 60 * 24);
+        response.addCookie(accessTokenCookie);
+        response.sendRedirect("home.jsp");
     }
 
     public static String getToken(String code) throws ClientProtocolException, IOException {
-        // call api to get token
         String response = Request.Post(Constants.GOOGLE_LINK_GET_TOKEN)
                 .bodyForm(Form.form().add("client_id", Constants.GOOGLE_CLIENT_ID)
                         .add("client_secret", Constants.GOOGLE_CLIENT_SECRET)

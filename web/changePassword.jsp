@@ -5,7 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<jsp:include page="header.jsp" />
+<jsp:include page="./layout/header.jsp" />
 <%@ page import="javax.servlet.http.HttpSession" %>
 
 <%
@@ -24,16 +24,12 @@
                             <input type="hidden" class="form-control" name="username" value="<%= username %>" >
                         </div>
                         <div class="form-group">
-                            <label for="currentPassword">Current Password</label>
-                            <input type="password" class="form-control" id="currentPassword" placeholder="Enter current password">
-                        </div>
-                        <div class="form-group">
                             <label for="newPassword">New Password</label>
-                            <input type="password" class="form-control" id="newPassword" placeholder="Enter new password">
+                            <input type="password" class="form-control" id="newPassword" name="newPassword" placeholder="Enter new password">
                         </div>
                         <div class="form-group">
                             <label for="confirmPassword">Confirm New Password</label>
-                            <input type="password" class="form-control" id="confirmPassword" placeholder="Confirm new password">
+                            <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" placeholder="Confirm new password">
                         </div>
                         <button type="submit" class="btn btn-primary">Change Password</button>
                     </form>
@@ -42,4 +38,4 @@
         </div>
     </div>
 </div>
-<jsp:include page="footer.jsp" />
+<jsp:include page="./layout/footer.jsp" />

@@ -5,7 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<jsp:include page="header.jsp" />
+<jsp:include page="./layout/header.jsp" />
 <div class="container mt-5">
     <form action="sendemai" method="post">
         <div class="form-group">
@@ -15,4 +15,4 @@
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>
 </div>
-<jsp:include page="footer.jsp" />
+<jsp:include page="./layout/footer.jsp" />

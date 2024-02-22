@@ -9,11 +9,11 @@ package constants;
  * @author quang
  */
 public class Constants {
-    public static String GOOGLE_CLIENT_ID = "884665707063-a1e68npi45f6p3nkmlasm1m9s4vm4bmq.apps.googleusercontent.com";
+    public static String GOOGLE_CLIENT_ID = "884665707063-d40mpr7r5uqcn707n7uvtjqvj4kggqjf.apps.googleusercontent.com";
 
-	public static String GOOGLE_CLIENT_SECRET = "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";
+	public static String GOOGLE_CLIENT_SECRET = "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";
 
-	public static String GOOGLE_REDIRECT_URI = "http://localhost:8080/fundunity/logingoogle";
+	public static String GOOGLE_REDIRECT_URI = "http://localhost:8080/donatedodreaming/logingoogle";
 
 	public static String GOOGLE_LINK_GET_TOKEN = "https://accounts.google.com/o/oauth2/token";
 

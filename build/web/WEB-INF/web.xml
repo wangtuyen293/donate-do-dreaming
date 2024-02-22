@@ -36,6 +36,10 @@
         <servlet-name>UserManagement</servlet-name>
         <servlet-class>controller.admin.UserManagement</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Home</servlet-name>
+        <servlet-class>controller.home.Home</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>SignUpServlet</servlet-name>
         <url-pattern>/signup</url-pattern>
@@ -76,9 +80,16 @@
         <servlet-name>UserManagement</servlet-name>
         <url-pattern>/usermanagement</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Home</servlet-name>
+        <url-pattern>/home</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30
         </session-timeout>
     </session-config>
+    <welcome-file-list>
+        <welcome-file>home</welcome-file>
+    </welcome-file-list>
 </web-app>

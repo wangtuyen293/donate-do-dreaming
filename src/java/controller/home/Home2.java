@@ -14,15 +14,14 @@ import model.Project;
  *
  * @author OS
  */
-public class Home extends HttpServlet {
-
+public class Home2 extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         ProjectDAO projectDAO = new ProjectDAO();
         List<Project> listProjects = projectDAO.getProjects();
         request.setAttribute("projects", listProjects);
-
+        
         request.getRequestDispatcher("home.jsp").forward(request, response);
     }
 

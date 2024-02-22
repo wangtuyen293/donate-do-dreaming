@@ -1,6 +1,6 @@
 package dao;
 
-import db.DonationDBContext;
+import db.DBContext;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -27,7 +27,7 @@ public class CharityOrganizationDAO {
         List<CharityOrganization> list = new ArrayList<>();
         String sql = "SELECT * FROM CharityOrganization";
         try {
-            conn = new DonationDBContext().getConnection();
+            conn = new DBContext().getConnection();
             ps = conn.prepareStatement(sql);
             rs = ps.executeQuery();
             while (rs.next()) {
@@ -45,7 +45,7 @@ public class CharityOrganizationDAO {
     public boolean deleteCharityOrgByCharityOrgId(int charityOrganizationId) {
         String sql = "DELETE FROM CharityOrganization WHERE charityOrganizationId = ?";
         try {
-            conn = new DonationDBContext().getConnection();
+            conn = new DBContext().getConnection();
             ps = conn.prepareStatement(sql);
             ps.setInt(1, charityOrganizationId);
             int rowsAffected = ps.executeUpdate();
@@ -64,7 +64,7 @@ public class CharityOrganizationDAO {
     public boolean deleteCharityOrgSelectedByCharityOrgId(int[] charityOrgIds) {
         try {
             String sql = "DELETE FROM CharityOrganization WHERE charityOrganizationId = ?";
-            conn = new DonationDBContext().getConnection();
+            conn = new DBContext().getConnection();
             ps = conn.prepareStatement(sql);
 
             for (int charityOrganizationId : charityOrgIds) {
@@ -98,7 +98,7 @@ public class CharityOrganizationDAO {
         String sql = "SELECT COUNT(*) as 'count'\n"
                 + "FROM CharityOrganization";
         try {
-            conn = new DonationDBContext().getConnection();
+            conn = new DBContext().getConnection();
             ps = conn.prepareStatement(sql);
             rs = ps.executeQuery();
             while (rs.next()) {

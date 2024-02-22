@@ -8,23 +8,74 @@ package model;
  *
  * @author quang
  */
-import java.sql.Date;
+import java.math.BigDecimal;
+import java.util.Date;
 
 public class Project {
+
     private int projectId;
     private String projectName;
-    private double projectTarget;
+    private BigDecimal projectTarget;
     private String projectImage;
-    private double donatedAmountOfMoney;
+    private BigDecimal donatedAmountOfMoney;
     private String projectStatus;
     private String projectDescription;
     private Date startDate;
     private Date endDate;
+    private byte isApproved;
     private int userId;
     private int charityOrganizationId;
     private int categoryId;
+    private Category category;
 
-    public Project(int projectId, String projectName, double projectTarget, String projectImage, double donatedAmountOfMoney, String projectStatus, String projectDescription, Date startDate, Date endDate, int userId, int charityOrganizationId, int categoryId) {
+    public Project(int projectId, String projectName, BigDecimal projectTarget, String projectImage, BigDecimal donatedAmountOfMoney, String projectStatus, String projectDescription, java.util.Date startDate, java.util.Date endDate, byte isApproved, int userId, int charityOrganizationId, Category category) {
+        this.projectId = projectId;
+        this.projectName = projectName;
+        this.projectTarget = projectTarget;
+        this.projectImage = projectImage;
+        this.donatedAmountOfMoney = donatedAmountOfMoney;
+        this.projectStatus = projectStatus;
+        this.projectDescription = projectDescription;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.isApproved = isApproved;
+        this.userId = userId;
+        this.charityOrganizationId = charityOrganizationId;
+        this.category = category;
+    }
+
+    public Project(int projectId, String projectName, BigDecimal projectTarget, String projectImage, BigDecimal donatedAmountOfMoney, String projectStatus, String projectDescription, java.util.Date startDate, java.util.Date endDate, byte isApproved, int userId, int charityOrganizationId, int categoryId) {
+        this.projectId = projectId;
+        this.projectName = projectName;
+        this.projectTarget = projectTarget;
+        this.projectImage = projectImage;
+        this.donatedAmountOfMoney = donatedAmountOfMoney;
+        this.projectStatus = projectStatus;
+        this.projectDescription = projectDescription;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.userId = userId;
+        this.charityOrganizationId = charityOrganizationId;
+        this.isApproved = isApproved;
+        this.categoryId = categoryId;
+    }
+
+    public Project(String projectName, BigDecimal projectTarget, String projectImage, BigDecimal donatedAmountOfMoney, String projectStatus, String projectDescription, java.util.Date startDate, java.util.Date endDate, byte isApproved, int userId, int charityOrganizationId, Category category) {
+        this.projectName = projectName;
+        this.projectTarget = projectTarget;
+        this.projectImage = projectImage;
+        this.donatedAmountOfMoney = donatedAmountOfMoney;
+        this.projectStatus = projectStatus;
+        this.projectDescription = projectDescription;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.isApproved = isApproved;
+        this.userId = userId;
+        this.charityOrganizationId = charityOrganizationId;
+        this.category = category;
+    }
+
+    public Project(int projectId, String projectName, BigDecimal projectTarget, String projectImage, BigDecimal donatedAmountOfMoney, String projectStatus, String projectDescription, java.util.Date startDate, java.util.Date endDate, int userId, int charityOrganizationId, int categoryId) {
         this.projectId = projectId;
         this.projectName = projectName;
         this.projectTarget = projectTarget;
@@ -37,6 +88,17 @@ public class Project {
         this.userId = userId;
         this.charityOrganizationId = charityOrganizationId;
         this.categoryId = categoryId;
+    }
+
+    public Project() {
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
     }
 
     public int getProjectId() {
@@ -55,11 +117,11 @@ public class Project {
         this.projectName = projectName;
     }
 
-    public double getProjectTarget() {
+    public BigDecimal getProjectTarget() {
         return projectTarget;
     }
 
-    public void setProjectTarget(double projectTarget) {
+    public void setProjectTarget(BigDecimal projectTarget) {
         this.projectTarget = projectTarget;
     }
 
@@ -71,11 +133,11 @@ public class Project {
         this.projectImage = projectImage;
     }
 
-    public double getDonatedAmountOfMoney() {
+    public BigDecimal getDonatedAmountOfMoney() {
         return donatedAmountOfMoney;
     }
 
-    public void setDonatedAmountOfMoney(double donatedAmountOfMoney) {
+    public void setDonatedAmountOfMoney(BigDecimal donatedAmountOfMoney) {
         this.donatedAmountOfMoney = donatedAmountOfMoney;
     }
 
@@ -95,20 +157,28 @@ public class Project {
         this.projectDescription = projectDescription;
     }
 
-    public Date getStartDate() {
+    public java.util.Date getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(Date startDate) {
+    public void setStartDate(java.util.Date startDate) {
         this.startDate = startDate;
     }
 
-    public Date getEndDate() {
+    public java.util.Date getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(Date endDate) {
+    public void setEndDate(java.util.Date endDate) {
         this.endDate = endDate;
+    }
+
+    public byte getIsApproved() {
+        return isApproved;
+    }
+
+    public void setIsApproved(byte isApproved) {
+        this.isApproved = isApproved;
     }
 
     public int getUserId() {
@@ -135,6 +205,9 @@ public class Project {
         this.categoryId = categoryId;
     }
 
-    
-}
+    @Override
+    public String toString() {
+        return "Project{" + "projectId=" + projectId + ", projectName=" + projectName + ", projectTarget=" + projectTarget + ", projectImage=" + projectImage + ", donatedAmountOfMoney=" + donatedAmountOfMoney + ", projectStatus=" + projectStatus + ", projectDescription=" + projectDescription + ", startDate=" + startDate + ", endDate=" + endDate + ", isApproved=" + isApproved + ", userId=" + userId + ", charityOrganizationId=" + charityOrganizationId + ", categoryId=" + categoryId + '}';
+    }
 
+}

@@ -40,6 +40,10 @@
         <servlet-name>ProjectManagement</servlet-name>
         <servlet-class>controller.admin.ProjectManagement</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>UserManagement</servlet-name>
+        <servlet-class>controller.admin.UserManagement</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>SignUpServlet</servlet-name>
         <url-pattern>/signup</url-pattern>
@@ -83,6 +87,10 @@
     <servlet-mapping>
         <servlet-name>ProjectManagement</servlet-name>
         <url-pattern>/projectmanagement</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UserManagement</servlet-name>
+        <url-pattern>/usermanagement</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import model.Users;
+import model.User;
 
 /**
  *
@@ -26,12 +26,12 @@ public class UserManagement extends HttpServlet {
         UserDAO userDAO = new UserDAO();
         PrintWriter out = response.getWriter();
         try {
-            Users user = (Users) session.getAttribute("user");
+            User user = (User) session.getAttribute("user");
             if (user.getUserTypeId() == 1) {
                 if (action == null || action.equalsIgnoreCase("")) {
                     ProjectDAO projectDAO = new ProjectDAO();
 
-                    List<Users> userList = userDAO.getAllUsers();
+                    List<User> userList = userDAO.getAllUsers();
                     request.setAttribute("userList", userList);
 
                     request.getRequestDispatcher("/admin/user.jsp").forward(request, response);

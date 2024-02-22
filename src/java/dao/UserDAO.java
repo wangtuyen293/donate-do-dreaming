@@ -1,6 +1,6 @@
 package dao;
 
-import db.DonationDBContext;
+import db.DBContext;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import model.Users;
+import model.User;
 
 /**
  *
@@ -23,11 +23,11 @@ public class UserDAO {
 
     private static final Logger logger = Logger.getLogger(UserDAO.class.getName());
 
-    public List<Users> getAllUsers() {
-        List<Users> list = new ArrayList<>();
+    public List<User> getAllUsers() {
+        List<User> list = new ArrayList<>();
         String sql = "SELECT * FROM Users WHERE userTypeId <> 1";
         try {
-            conn = new DonationDBContext().getConnection();
+            conn = new DBContext().getConnection();
             ps = conn.prepareStatement(sql);
             rs = ps.executeQuery();
             while (rs.next()) {
@@ -41,10 +41,10 @@ public class UserDAO {
         return list;
     }
 
-    public Users checkUser(String email, String password) {
+    public User checkUser(String email, String password) {
         try {
             String query = "select * from Users where email = ? and password = ?";
-            conn = new DonationDBContext().getConnection();
+            conn = new DBContext().getConnection();
             ps = conn.prepareStatement(query);
             ps.setString(1, email);
             ps.setString(2, password);
@@ -61,10 +61,10 @@ public class UserDAO {
         return null;
     }
 
-    public Users getUserByUserName(String userName) {
+    public User getUserByUserName(String userName) {
         try {
             String query = "SELECT * FROM Users WHERE userName = ?";
-            conn = new DonationDBContext().getConnection();
+            conn = new DBContext().getConnection();
             ps = conn.prepareStatement(query);
             ps.setString(1, userName);
             rs = ps.executeQuery();
@@ -80,10 +80,10 @@ public class UserDAO {
         return null;
     }
 
-    public Users getUserByEmail(String email) {
+    public User getUserByEmail(String email) {
         try {
             String query = "SELECT * FROM Users WHERE email = ?";
-            conn = new DonationDBContext().getConnection();
+            conn = new DBContext().getConnection();
             ps = conn.prepareStatement(query);
             ps.setString(1, email);
             rs = ps.executeQuery();
@@ -103,7 +103,7 @@ public class UserDAO {
         String sql = "INSERT INTO Users (userName, password, email, userTypeId) "
                 + "VALUES (?, ?, ?, ?)";
         try {
-            conn = new DonationDBContext().getConnection();
+            conn = new DBContext().getConnection();
             ps = conn.prepareStatement(sql);
             ps.setString(1, email);
             ps.setString(2, password);
@@ -122,7 +122,7 @@ public class UserDAO {
         String sql = "SELECT COUNT(*) as 'count'\n"
                 + "FROM Users";
         try {
-            conn = new DonationDBContext().getConnection();
+            conn = new DBContext().getConnection();
             ps = conn.prepareStatement(sql);
             rs = ps.executeQuery();
             while (rs.next()) {
@@ -139,7 +139,7 @@ public class UserDAO {
         String sql = "SELECT COUNT(*) as 'count'\n"
                 + "FROM Users WHERE userTypeId <> 1";
         try {
-            conn = new DonationDBContext().getConnection();
+            conn = new DBContext().getConnection();
             ps = conn.prepareStatement(sql);
             rs = ps.executeQuery();
             while (rs.next()) {
@@ -154,7 +154,7 @@ public class UserDAO {
     public boolean updateUserStatus(int userId, String userStatus) {
         String sql = "UPDATE Users SET userStatus = ? WHERE userId = ?";
         try {
-            conn = new DonationDBContext().getConnection();
+            conn = new DBContext().getConnection();
             ps = conn.prepareStatement(sql);
             ps.setString(1, userStatus);
             ps.setInt(2, userId);
@@ -177,7 +177,7 @@ public class UserDAO {
     public void updateUserPassword(int userId, String password) {
         String sql = "UPDATE Users SET password = ? WHERE userId = ?";
         try {
-            conn = new DonationDBContext().getConnection();
+            conn = new DBContext().getConnection();
             ps = conn.prepareStatement(sql);
             ps.setString(1, password);
             ps.setInt(2, userId);
@@ -193,7 +193,7 @@ public class UserDAO {
         boolean isExisted = false;
         String sql = "select email from UserGoogle";
         try {
-            conn = new DonationDBContext().getConnection();
+            conn = new DBContext().getConnection();
             ps = conn.prepareStatement(sql);
             rs = ps.executeQuery();
             while (rs.next()) {
@@ -212,7 +212,7 @@ public class UserDAO {
     public void createUser(String email, String password) {
         String sql = "INSERT INTO Users (email, password) VALUES (?, ?)";
         try {
-            conn = new DonationDBContext().getConnection();
+            conn = new DBContext().getConnection();
             ps = conn.prepareStatement(sql);
             ps.setString(1, email);
             ps.setString(2, password);
@@ -227,7 +227,7 @@ public class UserDAO {
         int userId = 0;
         String sql = "SELECT userId FROM Users WHERE email = ?";
         try {
-            conn = new DonationDBContext().getConnection();
+            conn = new DBContext().getConnection();
             ps = conn.prepareStatement(sql);
             ps.setString(1, email);
             rs = ps.executeQuery();
@@ -245,7 +245,7 @@ public class UserDAO {
     public boolean checkPassword(int userId, String password) {
         String sql = "SELECT password from Users where userId = ?";
         try {
-            conn = new DonationDBContext().getConnection();
+            conn = new DBContext().getConnection();
             ps = conn.prepareStatement(sql);
             ps.setInt(1, userId);
             rs = ps.executeQuery();
@@ -265,7 +265,7 @@ public class UserDAO {
     public boolean deleteUser(int userId) {
         String sql = "DELETE FROM Users WHERE userId=?";
         try {
-            conn = new DonationDBContext().getConnection();
+            conn = new DBContext().getConnection();
             ps = conn.prepareStatement(sql);
             ps.setInt(1, userId);
             int rowsAffected = ps.executeUpdate();
@@ -286,7 +286,7 @@ public class UserDAO {
     public boolean deleteUserSelected(int[] userIds) {
         try {
             String sql = "DELETE FROM Users WHERE userId=?";
-            conn = new DonationDBContext().getConnection();
+            conn = new DBContext().getConnection();
             ps = conn.prepareStatement(sql);
 
             // Delete users based on the user IDs
@@ -321,7 +321,7 @@ public class UserDAO {
     public void updateUserAuth(int userId, int googleUserId) {
         String sql = "UPDATE Authentication SET googleUserId = ? WHERE userId = ?";
         try {
-            conn = new DonationDBContext().getConnection();
+            conn = new DBContext().getConnection();
             ps = conn.prepareStatement(sql);
             ps.setInt(1, googleUserId);
             ps.setInt(2, userId);
@@ -336,7 +336,7 @@ public class UserDAO {
     public void createAuthenByGoogleId(int googleUserId) {
         String sql = "INSERT INTO Authentication (googleUserId) VALUES (?)";
         try {
-            conn = new DonationDBContext().getConnection();
+            conn = new DBContext().getConnection();
             ps = conn.prepareStatement(sql);
             ps.setInt(1, googleUserId);
             ps.executeUpdate();
@@ -350,7 +350,7 @@ public class UserDAO {
     public int getGoogleUserIdByEmail(String email) {
         String sql = "select googleUserId from UserGoogle where email= ?";
         try {
-            conn = new DonationDBContext().getConnection();
+            conn = new DBContext().getConnection();
             ps = conn.prepareStatement(sql);
             ps.setString(1, email);
             rs = ps.executeQuery();
@@ -370,7 +370,7 @@ public class UserDAO {
         List<Integer> list = new ArrayList<>();
         String sql = "select googleUserId from UserGoogle";
         try {
-            conn = new DonationDBContext().getConnection();
+            conn = new DBContext().getConnection();
             ps = conn.prepareStatement(sql);
             rs = ps.executeQuery();
             while (rs.next()) {
@@ -389,7 +389,7 @@ public class UserDAO {
         List<Integer> list = new ArrayList<>();
         String sql = "select userId from Authentication";
         try {
-            conn = new DonationDBContext().getConnection();
+            conn = new DBContext().getConnection();
             ps = conn.prepareStatement(sql);
             rs = ps.executeQuery();
             while (rs.next()) {
@@ -404,8 +404,8 @@ public class UserDAO {
         return list;
     }
 
-    private Users mapResultSetToUser(ResultSet rs) throws SQLException {
-        Users user = new Users();
+    private User mapResultSetToUser(ResultSet rs) throws SQLException {
+        User user = new User();
         user.setUserId(rs.getInt("userId"));
         user.setFullName(rs.getString("fullName"));
         user.setUserName(rs.getString("userName"));

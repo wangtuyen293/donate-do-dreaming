@@ -47,7 +47,7 @@
             <button type="submit" class="btn btn-primary" style="border-radius: 25px; margin-top: 15px">Start</button>
             <script src="assets/js/validate-form.js"></script>
         </form>
-      
+
     </div>
 
     <script
@@ -56,4 +56,6 @@
         crossorigin="anonymous"
     ></script>
 </main>
+
+
 <jsp:include page="footer.jsp" />

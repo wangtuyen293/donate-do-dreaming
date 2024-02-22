@@ -10,7 +10,7 @@
 <main>
     <div class="container">
         <h1>Create a Project</h1>
-        <form action="create-project" method="post" enctype="multipart/form-data">
+        <form >
             <div class="mb-3">
                 <label for="post-title" class="form-label">Title</label>
                 <input type="text" class="form-control" id="post-title" name="title" required>
@@ -30,9 +30,7 @@
                 <label for="post-category" class="form-label">Category</label>
                 <select class="form-select" id="post-category" name="category" required>
                     <option value="null">Select a Category</option>
-                    <c:forEach items="${requestScope.clist}" var="c">
-                        <option value="${c.categoryId}">${c.categoryName}</option>
-                    </c:forEach>
+
                 </select>
             </div>
 
@@ -47,9 +45,9 @@
             <button type="submit" class="btn btn-primary" style="border-radius: 25px; margin-top: 15px">Start</button>
             <script src="assets/js/validate-form.js"></script>
         </form>
-       
+
         <div class="alert alert-success" style="margin-top: 25px">Project Created Success!</div>
-  
+
     </div>
 
     <script

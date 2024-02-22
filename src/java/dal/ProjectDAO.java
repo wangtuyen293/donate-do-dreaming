@@ -20,12 +20,65 @@ import model.Project;
  */
 public class ProjectDAO {
 
-//    public void createProject(Project project) {
-//        Connection con = ConnectDB.getConnection();
-//        String sql = "INSERT INTO Project (projectName, projectTarget, projectImage, donatedAmountOfMoney, projectStatus, projectDescription, startDate, endDate, isApproved, userId ,categoryId)\n"
-//                + "VALUES \n"
-//                + "(?,?,?,?,?,?,?,?,?,?)";
+    public void createProject(Project project) {
+        Connection con = ConnectDB.getConnection();
+        String sql = "INSERT INTO [dbo].[Project]\n"
+                + "           ([projectName]\n"
+                + "           ,[projectTarget]\n"
+                + "           ,[projectImage]\n"
+                + "           ,[donatedAmountOfMoney]\n"
+                + "           ,[projectStatus]\n"
+                + "           ,[projectDescription]\n"
+                + "           ,[startDate]\n"
+                + "           ,[endDate]\n"
+                + "           ,[isApproved]\n"
+                + "           ,[userId]\n"
+                + "           ,[charityOrganizationId]\n"
+                + "           ,[categoryId])\n"
+                + "     VALUES\n"
+                + "           (?,?,?,?,?,?,?,?,?,?,?,?)";
+        try {
+            PreparedStatement st = con.prepareStatement(sql);
+            st.setString(1, project.getProjectName());
+            st.setDouble(2, project.getProjectTarget());
+            st.setString(3, project.getProjectImage());
+            st.setDouble(4, project.getDonatedAmountOfMoney());
+            st.setString(5, project.getProjectStatus());
+            st.setString(6, project.getProjectDescription());
+            st.setDate(7, project.getStartDate());
+            st.setDate(8, project.getEndDate());
+            st.setInt(9, project.getIsApproved());
+            st.setInt(10, project.getUserId());
+            st.setInt(11,project.getCharityOrganizationId());
+            st.setInt(12, project.getCategoryId());
+            st.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException("Lỗi tạo project: " + e.getMessage());
+        } finally {
+            // Đảm bảo luôn đóng kết nối database
+            ConnectDB.closeConnection(con);
+        }
+    }
+//    public int createProject(Project project) {
+//        int kq = 0;
+//        
 //        try {
+//            Connection con = ConnectDB.getConnection();
+//            String sql = "INSERT INTO [dbo].[Project]\n"
+//                    + "           ([projectName]\n"
+//                    + "           ,[projectTarget]\n"
+//                    + "           ,[projectImage]\n"
+//                    + "           ,[donatedAmountOfMoney]\n"
+//                    + "           ,[projectStatus]\n"
+//                    + "           ,[projectDescription]\n"
+//                    + "           ,[startDate]\n"
+//                    + "           ,[endDate]\n"
+//                    + "           ,[isApproved]\n"
+//                    + "           ,[userId]         \n"
+//                    + "           ,[categoryId])\n"
+//                    + "     VALUES\n"
+//                    + "           (?,?,?,?,?,?,?,?,?,?,?)";
 //            PreparedStatement st = con.prepareStatement(sql);
 //            st.setString(1, project.getProjectName());
 //            st.setDouble(2, project.getProjectTarget());
@@ -38,55 +91,15 @@ public class ProjectDAO {
 //            st.setInt(9, project.getIsApproved());
 //            st.setInt(10, project.getUserId());
 //            st.setInt(11, project.getCategoryId());
-//            st.executeUpdate();
+//            kq = st.executeUpdate();
+//            ConnectDB.closeConnection(con);
 //        } catch (SQLException e) {
 //            e.printStackTrace();
 //            throw new RuntimeException("Lỗi tạo project: " + e.getMessage());
-//        } finally {
-//            // Đảm bảo luôn đóng kết nối database
-//            ConnectDB.closeConnection(con);
-//        }
+//        } 
+//        return kq;
+//
 //    }
-    public int createProject(Project project) {
-        int kq = 0;
-        
-        try {
-            Connection con = ConnectDB.getConnection();
-            String sql = "INSERT INTO [dbo].[Project]\n"
-                    + "           ([projectName]\n"
-                    + "           ,[projectTarget]\n"
-                    + "           ,[projectImage]\n"
-                    + "           ,[donatedAmountOfMoney]\n"
-                    + "           ,[projectStatus]\n"
-                    + "           ,[projectDescription]\n"
-                    + "           ,[startDate]\n"
-                    + "           ,[endDate]\n"
-                    + "           ,[isApproved]\n"
-                    + "           ,[userId]         \n"
-                    + "           ,[categoryId])\n"
-                    + "     VALUES\n"
-                    + "           (?,?,?,?,?,?,?,?,?,?,?)";
-            PreparedStatement st = con.prepareStatement(sql);
-            st.setString(1, project.getProjectName());
-            st.setDouble(2, project.getProjectTarget());
-            st.setString(3, project.getProjectImage());
-            st.setDouble(4, project.getDonatedAmountOfMoney());
-            st.setString(5, project.getProjectStatus());
-            st.setString(6, project.getProjectDescription());
-            st.setDate(7, project.getStartDate());
-            st.setDate(8, project.getEndDate());
-            st.setInt(9, project.getIsApproved());
-            st.setInt(10, project.getUserId());
-            st.setInt(11, project.getCategoryId());
-            kq = st.executeUpdate();
-            ConnectDB.closeConnection(con);
-        } catch (SQLException e) {
-            e.printStackTrace();
-            throw new RuntimeException("Lỗi tạo project: " + e.getMessage());
-        } 
-        return kq;
-
-    }
 
     public int updateProject(Project p) {
         int kq = 0;
